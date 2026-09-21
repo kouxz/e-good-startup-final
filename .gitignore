@@ -1,6 +1,7 @@
 *.iml
 .gradle
 /local.properties
+/.idea/
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -19,5 +20,23 @@ google-services.json
 
 # Environment & Secrets
 .env
+.env.*
+!.env.example
 *.keystore
 *.jks
+*.p12
+*.pfx
+*.pem
+*.key
+keystore.properties
+signing.properties
+secrets.properties
+service-account*.json
+firebase-adminsdk*.json
+credentials*.json
+
+# Generated packages and logs
+*.apk
+*.aab
+*.log
+Thumbs.db
