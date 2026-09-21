@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.EGood.DealerSettingRow" parent="">
+        <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">52dp</item><item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">14dp</item><item name="android:paddingEnd">14dp</item>
+        <item name="android:textSize">13sp</item><item name="android:textColor">#0F172A</item>
+        <item name="android:drawableEnd">@drawable/ic_dealer_chevron</item><item name="android:drawablePadding">8dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item><item name="android:clickable">true</item><item name="android:focusable">true</item>
+    </style>
+</resources>

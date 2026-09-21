@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_dealer_dashboard"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/nav_vehicles"
+        android:icon="@drawable/ic_dealer_vehicles"
+        android:title="Meus Veículos" />
+
+    <item
+        android:id="@+id/nav_add_vehicle"
+        android:icon="@drawable/ic_dealer_add"
+        android:title="Adicionar Veículo" />
+
+    <item
+        android:id="@+id/nav_interested"
+        android:icon="@drawable/ic_dealer_contacts"
+        android:title="Interessados" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_dealer_profile"
+        android:title="Perfil da Empresa" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_dealer_settings"
+        android:title="Configurações" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_dealer_logout"
+        android:title="Sair" />
+
+</menu>

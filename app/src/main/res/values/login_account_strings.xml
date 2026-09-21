@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_invalid_type">Login inválido para este tipo de conta. Selecione Pessoa ou Concessionária conforme seu cadastro.</string>
+</resources>

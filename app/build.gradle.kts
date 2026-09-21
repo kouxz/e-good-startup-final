@@ -45,6 +45,8 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
     implementation(libs.material)
+    implementation(libs.preference)
+    implementation(libs.transportation.consumer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
@@ -53,6 +55,9 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.common)
     implementation(libs.firebase.auth)
+    implementation(libs.credentials)
+    implementation(libs.credentials.play.services.auth)
+    implementation(libs.googleid)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
 
@@ -64,9 +69,15 @@ dependencies {
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
 
+    // Gson (JSON serialization)
+    implementation(libs.gson)
+
     // Google Maps e Localização[cite: 1]
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
+
+    // OSMDroid (Maps Open Source)
+    implementation(libs.osmdroid.android.v6113)
 
     // RecyclerView e CardView[cite: 1]
     implementation(libs.recyclerview)
@@ -75,4 +86,8 @@ dependencies {
     // ViewModel e LiveData (Arquitetura MVVM)[cite: 1]
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
-}
+
+
+    implementation(libs.osmdroid.android)
+
+    }

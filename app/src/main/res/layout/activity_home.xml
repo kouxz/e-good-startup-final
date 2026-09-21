@@ -1,504 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F8FAFA"
-    android:fitsSystemWindows="true">
-
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="12dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        app:srcCompat="@drawable/ic_egood_logo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="e-good"
-                        android:textColor="@color/text_dark"
-                        android:textSize="28sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <FrameLayout
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="12dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:src="@android:drawable/ic_dialog_email"
-                        app:tint="#6B7280" />
-
-                    <TextView
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:layout_gravity="top|end"
-                        android:background="@color/primary"
-                        android:gravity="center"
-                        android:text="2"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:textStyle="bold" />
-                </FrameLayout>
-
-                <TextView
-                    android:id="@+id/tvUserAvatar"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:background="@color/primary"
-                    android:gravity="center"
-                    android:text="US"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/primary"
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingTop="18dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="24dp">
-
-                <TextView
-                    android:id="@+id/tvUserGreeting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Olá, Usuário 👋"
-                    android:textColor="#E6FFFD"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Boa tarde!"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Sorocaba, SP • 24°C"
-                    android:textColor="#DFFFFE"
-                    android:textSize="24sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#2EBFBE"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingVertical="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🌱"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="124 kg"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="CO₂ Evitado"
-                            android:textColor="#E8FFFE"
-                            android:textSize="10sp" />
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F8FAFC" android:fitsSystemWindows="true">
+    <include layout="@layout/include_user_header" />
+    <ScrollView android:layout_width="0dp" android:layout_height="0dp" android:fillViewport="true" android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/userHeader" app:layout_constraintBottom_toTopOf="@id/bottomNav" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingBottom="20dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@color/primary"
+                android:paddingStart="16dp" android:paddingTop="16dp" android:paddingEnd="16dp" android:paddingBottom="22dp">
+                <TextView android:id="@+id/tvUserGreeting" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Olá, Usuário" android:textColor="#DFFFFE" android:textSize="13sp" />
+                <TextView android:id="@+id/tvTimeGreeting" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="Boa tarde!" android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="Estimativas ilustrativas de mobilidade" android:textColor="#DFFFFE" android:textSize="10sp" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="5dp" android:minHeight="92dp" android:background="@drawable/bg_user_metric" android:gravity="center" android:orientation="vertical" android:padding="8dp">
+                        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:contentDescription="CO₂ evitado" app:srcCompat="@drawable/ic_user_leaf" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="124 kg" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="2" android:text="CO₂ evitado" android:textColor="#E6FFFD" android:textSize="9sp" />
                     </LinearLayout>
-
-                    <Space
-                        android:layout_width="8dp"
-                        android:layout_height="1dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#2EBFBE"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingVertical="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="⚡"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="1.840"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Km Elétricos"
-                            android:textColor="#E8FFFE"
-                            android:textSize="10sp" />
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginHorizontal="5dp" android:minHeight="92dp" android:background="@drawable/bg_user_metric" android:gravity="center" android:orientation="vertical" android:padding="8dp">
+                        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:contentDescription="Quilômetros elétricos" app:srcCompat="@drawable/ic_add_vehicle_bolt" app:tint="#FFFFFF" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="1.840" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="2" android:text="km elétricos" android:textColor="#E6FFFD" android:textSize="9sp" />
                     </LinearLayout>
-
-                    <Space
-                        android:layout_width="8dp"
-                        android:layout_height="1dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#2EBFBE"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingVertical="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="💰"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="R$ 312"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Economia"
-                            android:textColor="#E8FFFE"
-                            android:textSize="10sp" />
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="5dp" android:minHeight="92dp" android:background="@drawable/bg_user_metric" android:gravity="center" android:orientation="vertical" android:padding="8dp">
+                        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:contentDescription="Economia estimada" app:srcCompat="@drawable/ic_user_savings" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="R$ 312" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="2" android:text="Economia" android:textColor="#E6FFFD" android:textSize="9sp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-12dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="12dp" android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="16dp" app:cardElevation="2dp" app:strokeColor="#E2E8F0" app:strokeWidth="1dp">
+                <LinearLayout android:id="@+id/quickActionsRow" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="6dp" android:paddingVertical="10dp">
+                    <LinearLayout android:id="@+id/quickBtnVehicles" style="@style/Widget.EGood.HomeQuickAction"><ImageView style="@style/Widget.EGood.HomeQuickIcon" android:contentDescription="Veículos" app:srcCompat="@drawable/ic_dealer_vehicles" /><TextView style="@style/Widget.EGood.HomeQuickLabel" android:text="Veículos" /></LinearLayout>
+                    <LinearLayout android:id="@+id/quickBtnComparison" style="@style/Widget.EGood.HomeQuickAction"><ImageView style="@style/Widget.EGood.HomeQuickIcon" android:contentDescription="Comparar" app:srcCompat="@drawable/ic_user_compare" /><TextView style="@style/Widget.EGood.HomeQuickLabel" android:text="Comparar" /></LinearLayout>
+                    <LinearLayout android:id="@+id/quickBtnDealerships" style="@style/Widget.EGood.HomeQuickAction"><ImageView style="@style/Widget.EGood.HomeQuickIcon" android:contentDescription="Concessionárias" app:srcCompat="@drawable/ic_user_dealership" /><TextView style="@style/Widget.EGood.HomeQuickLabel" android:text="Concessionárias" /></LinearLayout>
+                    <LinearLayout android:id="@+id/quickBtnSolar" style="@style/Widget.EGood.HomeQuickAction"><ImageView style="@style/Widget.EGood.HomeQuickIcon" android:contentDescription="Solar" app:srcCompat="@drawable/ic_user_solar" /><TextView style="@style/Widget.EGood.HomeQuickLabel" android:text="Solar" /></LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_card_unselected"
-                    android:elevation="2dp"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="20dp" android:layout_marginEnd="16dp" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Veículos em destaque" android:textColor="#0F172A" android:textSize="17sp" android:textStyle="bold" />
+                <TextView android:id="@+id/btnSeeAll" android:layout_width="wrap_content" android:layout_height="48dp" android:gravity="center" android:minWidth="64dp" android:text="Ver todos" android:textColor="#00AFA5" android:textSize="12sp" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/homeFeaturedList" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:orientation="horizontal" />
 
-                    <LinearLayout
-                        android:id="@+id/quickBtnVehicles"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-                        <TextView android:layout_width="42dp" android:layout_height="42dp" android:background="#E5F9F8" android:gravity="center" android:text="🚗" android:textSize="18sp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Veículos" android:textColor="#374151" android:textSize="11sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/quickBtnComparison"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-                        <TextView android:layout_width="42dp" android:layout_height="42dp" android:background="#E5F9F8" android:gravity="center" android:text="📊" android:textSize="18sp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Comparar" android:textColor="#374151" android:textSize="11sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/quickBtnDealerships"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-                        <TextView android:layout_width="42dp" android:layout_height="42dp" android:background="#E5F9F8" android:gravity="center" android:text="🏢" android:textSize="18sp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Concessionárias" android:textColor="#374151" android:textSize="11sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/quickBtnSolar"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-                        <TextView android:layout_width="42dp" android:layout_height="42dp" android:background="#E5F9F8" android:gravity="center" android:text="☀️" android:textSize="18sp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Solar" android:textColor="#374151" android:textSize="11sp" />
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="20dp" android:layout_marginEnd="16dp" app:cardBackgroundColor="#DDF7F6" app:cardCornerRadius="14dp" app:cardElevation="0dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="12dp">
+                    <ImageView android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/bg_user_icon_tile" android:padding="8dp" android:contentDescription="Dica" app:srcCompat="@drawable/ic_user_tip" />
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Dica de sustentabilidade" android:textColor="#0F172A" android:textSize="12sp" android:textStyle="bold" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="Estimativa ilustrativa: veículos elétricos podem reduzir emissões, conforme a fonte da energia e o uso." android:textColor="#475569" android:textSize="10sp" />
                     </LinearLayout>
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="20dp" android:layout_marginEnd="16dp" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Concessionárias próximas" android:textColor="#0F172A" android:textSize="17sp" android:textStyle="bold" />
+                <TextView android:id="@+id/btnSeeAllDealers" android:layout_width="wrap_content" android:layout_height="48dp" android:gravity="center" android:minWidth="64dp" android:text="Ver todas" android:textColor="#00AFA5" android:textSize="12sp" />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Veículos em destaque"
-                    android:textColor="#111827"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/btnSeeAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver todos"
-                    android:textColor="@color/primary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_card_unselected"
-                        android:orientation="vertical"
-                        android:paddingBottom="10dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="96dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/car_byd_dolphin" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@color/primary"
-                            android:paddingStart="8dp"
-                            android:paddingTop="2dp"
-                            android:paddingEnd="8dp"
-                            android:paddingBottom="2dp"
-                            android:text="Mais vendido"
-                            android:textColor="@color/white"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="8dp"
-                            android:text="BYD Dolphin"
-                            android:textColor="#111827"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="3dp"
-                            android:text="⚡ 400 km   🔋 60 kWh"
-                            android:textColor="#6B7280"
-                            android:textSize="11sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="6dp"
-                            android:text="R$ 149.800"
-                            android:textColor="@color/primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="12dp"
-                        android:layout_height="1dp" />
-
-                    <LinearLayout
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_card_unselected"
-                        android:orientation="vertical"
-                        android:paddingBottom="10dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="96dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/car_volvo_ex30" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@color/primary"
-                            android:paddingStart="8dp"
-                            android:paddingTop="2dp"
-                            android:paddingEnd="8dp"
-                            android:paddingBottom="2dp"
-                            android:text="Premium"
-                            android:textColor="@color/white"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="8dp"
-                            android:text="Volvo EX30"
-                            android:textColor="#111827"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="3dp"
-                            android:text="⚡ 480 km   🔋 69 kWh"
-                            android:textColor="#6B7280"
-                            android:textSize="11sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="6dp"
-                            android:text="R$ 285.000"
-                            android:textColor="@color/primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
+            <LinearLayout android:id="@+id/homeDealersList" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:orientation="vertical" />
+            <com.google.android.material.card.MaterialCardView android:id="@+id/homeDealerEmpty" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="14dp" app:cardElevation="0dp" app:strokeColor="#E2E8F0" app:strokeWidth="1dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:padding="20dp" android:text="Nenhuma concessionária local cadastrada. Toque em “Ver todas” para consultar a lista." android:textColor="#64748B" android:textSize="12sp" />
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/bottomNav"
-        android:layout_width="0dp"
-        android:layout_height="84dp"
-        android:background="@color/white"
-        android:elevation="8dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <LinearLayout android:id="@+id/btnHome" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🏠" android:textSize="16sp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Início" android:textColor="@color/primary" android:textSize="10sp" />
-            <TextView android:layout_width="4dp" android:layout_height="4dp" android:layout_marginTop="2dp" android:background="@color/primary" />
-        </LinearLayout>
-        <LinearLayout android:id="@+id/btnVehicles" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🚗" android:textSize="16sp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Veículos" android:textColor="#9CA3AF" android:textSize="10sp" />
-        </LinearLayout>
-        <LinearLayout android:id="@+id/btnComparison" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📊" android:textSize="16sp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Comparar" android:textColor="#9CA3AF" android:textSize="10sp" />
-        </LinearLayout>
-        <LinearLayout android:id="@+id/btnSolar" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="☀️" android:textSize="16sp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Solar" android:textColor="#9CA3AF" android:textSize="10sp" />
-        </LinearLayout>
-        <LinearLayout android:id="@+id/btnProfile" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="👤" android:textSize="16sp" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="Perfil" android:textColor="#9CA3AF" android:textSize="10sp" />
-        </LinearLayout>
-    </LinearLayout>
+    <include layout="@layout/include_user_bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

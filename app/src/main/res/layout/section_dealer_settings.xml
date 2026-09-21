@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:background="#F8FAFC">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="20dp" android:paddingBottom="28dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Configurações"
+            android:textSize="20sp" android:textStyle="bold" android:textColor="#0F172A" android:layout_marginBottom="16dp" />
+        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="14dp" app:cardElevation="1dp" app:strokeColor="#E2E8F0" app:strokeWidth="1dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="14dp"
+                    android:text="NOTIFICAÇÕES" android:textSize="10sp" android:textColor="#64748B" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp"
+                    android:gravity="center_vertical" android:paddingStart="14dp" android:paddingEnd="14dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Notificações gerais" android:textSize="13sp" android:textColor="#0F172A" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Preferência salva neste aparelho" android:textSize="10sp" android:textColor="#94A3B8" />
+                    </LinearLayout>
+                    <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/switchDealerNotifications"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="Ativar notificações gerais"
+                        app:thumbTint="@color/dealer_switch_thumb" app:trackTint="@color/dealer_switch_track" />
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp"
+                    android:gravity="center_vertical" android:paddingStart="14dp" android:paddingEnd="14dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Novos interessados" android:textSize="13sp" android:textColor="#0F172A" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Avisar quando houver um novo contato" android:textSize="10sp" android:textColor="#94A3B8" />
+                    </LinearLayout>
+                    <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/switchDealerInterests"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="Ativar avisos de novos interessados"
+                        app:thumbTint="@color/dealer_switch_thumb" app:trackTint="@color/dealer_switch_track" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="14dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="14dp" app:cardElevation="1dp" app:strokeColor="#E2E8F0" app:strokeWidth="1dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="14dp" android:text="CONTA" android:textSize="10sp" android:textColor="#64748B" />
+                <TextView android:id="@+id/btnDealerChangePassword" style="@style/Widget.EGood.DealerSettingRow" android:text="Alterar senha" android:contentDescription="Alterar senha" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="14dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="14dp" app:cardElevation="1dp" app:strokeColor="#E2E8F0" app:strokeWidth="1dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="14dp" android:text="SUPORTE" android:textSize="10sp" android:textColor="#64748B" />
+                <TextView android:id="@+id/btnDealerHelp" style="@style/Widget.EGood.DealerSettingRow" android:text="Central de Ajuda" android:contentDescription="Abrir Central de Ajuda" />
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9" />
+                <TextView android:id="@+id/btnDealerContact" style="@style/Widget.EGood.DealerSettingRow" android:text="Fale Conosco" android:contentDescription="Fale Conosco" />
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9" />
+                <TextView android:id="@+id/btnDealerTerms" style="@style/Widget.EGood.DealerSettingRow" android:text="Termos de Uso" android:contentDescription="Abrir Termos de Uso" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnSettingsLogout"
+            style="@style/Widget.MaterialComponents.Button.TextButton" android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_marginTop="20dp" android:text="Sair" android:textSize="12sp" android:textAllCaps="false"
+            android:textColor="#B91C1C" app:backgroundTint="#FEE2E2" app:cornerRadius="12dp" />
+    </LinearLayout>
+</ScrollView>

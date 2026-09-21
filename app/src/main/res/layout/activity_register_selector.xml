@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface_white"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvVoltar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="← Voltar ao início"
+            android:textColor="#0F766E"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:minHeight="48dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_egood_logo"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/tvVoltar"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:gravity="center_vertical"
+            android:text="Criar sua Conta"
+            android:textSize="24sp"
+            android:textColor="@color/text_dark"
+            android:textStyle="bold"
+            android:layout_marginStart="12dp"
+            app:layout_constraintTop_toTopOf="@id/ivLogo"
+            app:layout_constraintStart_toEndOf="@id/ivLogo"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escolha o tipo de conta que deseja criar"
+            android:textSize="14sp"
+            android:textColor="#64748B"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPessoa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/account_choice_background"
+            app:strokeColor="@color/account_choice_stroke"
+            app:strokeWidth="2dp"
+            app:checkedIcon="@drawable/ic_account_check"
+            app:checkedIconTint="@null"
+            app:rippleColor="#220F766E"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="136dp"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iconPessoa"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_person"
+                android:importantForAccessibility="no"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/titlePessoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pessoa Física"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#0F172A"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/descPessoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buscar veículos e concessionárias"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="#64748B"
+                android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardConcessionaria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/account_choice_background"
+            app:strokeColor="@color/account_choice_stroke"
+            app:strokeWidth="2dp"
+            app:checkedIcon="@drawable/ic_account_check"
+            app:checkedIconTint="@null"
+            app:rippleColor="#220F766E"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/cardPessoa"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="136dp"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iconConcessionaria"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_store"
+                android:importantForAccessibility="no"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/titleConcessionaria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Concessionária"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_dark"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/descConcessionaria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gerenciar seus veículos"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="#64748B"
+                android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProximo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="52dp"
+            android:layout_marginTop="32dp"
+            android:text="Próximo"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#0F766E"
+            app:cornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/cardConcessionaria"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Já tem uma conta? Entre aqui"
+            android:textColor="#0F766E"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="24dp"
+            android:minHeight="48dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/btnProximo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

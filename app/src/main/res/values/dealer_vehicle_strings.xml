@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dealer_delete_vehicle_action">Excluir</string>
+    <string name="dealer_delete_vehicle_description">Excluir %1$s</string>
+    <string name="dealer_delete_vehicle_title">Excluir veículo?</string>
+    <string name="dealer_delete_vehicle_message">Deseja excluir %1$s da sua lista de veículos?</string>
+    <string name="dealer_delete_vehicle_cancel">Cancelar</string>
+    <string name="dealer_delete_vehicle_success">Veículo excluído</string>
+    <string name="dealer_delete_vehicle_not_found">O veículo não está mais na lista</string>
+</resources>

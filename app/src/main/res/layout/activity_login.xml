@@ -129,37 +129,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="E-MAIL"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_gray"
+                android:labelFor="@id/editEmail"
+                android:textSize="11sp"
+                android:textColor="#475569"
                 android:layout_marginTop="24dp"
                 app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayoutEmail"
+                style="@style/Widget.EGood.Login.InputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxCornerRadiusTopStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxBackgroundColor="@color/background_app"
-                app:boxStrokeColor="@color/stroke_input"
-                app:startIconDrawable="@android:drawable/ic_dialog_email"
-                app:startIconTint="@color/text_gray"
-                app:endIconTint="@color/text_gray"
-                app:hintTextColor="@color/text_gray"
+                android:layout_marginTop="6dp"
+                app:startIconDrawable="@drawable/ic_login_email"
                 app:layout_constraintTop_toBottomOf="@id/labelEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editEmail"
+                    style="@style/Widget.EGood.Login.Input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="seu@email.com"
-                    android:textColor="@color/text_dark"
-                    android:textColorHint="@color/text_gray"
-                    android:textColorHighlight="@android:color/transparent"
+                    android:autofillHints="emailAddress"
+                    android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,38 +161,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SENHA"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_gray"
+                android:labelFor="@id/editSenha"
+                android:textSize="11sp"
+                android:textColor="#475569"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@id/inputLayoutEmail"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayoutSenha"
+                style="@style/Widget.EGood.Login.InputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxCornerRadiusTopStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxBackgroundColor="@color/background_app"
-                app:boxStrokeColor="@color/stroke_input"
-                app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-                app:startIconTint="@color/text_gray"
-                app:endIconTint="@color/text_gray"
-                app:hintTextColor="@color/text_gray"
-                app:passwordToggleEnabled="true"
+                android:layout_marginTop="6dp"
+                app:startIconDrawable="@drawable/ic_login_lock"
+                app:endIconMode="password_toggle"
+                app:endIconContentDescription="Mostrar ou ocultar senha"
                 app:layout_constraintTop_toBottomOf="@id/labelSenha">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editSenha"
+                    style="@style/Widget.EGood.Login.Input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="........"
-                    android:textColor="@color/text_dark"
-                    android:textColorHint="@color/text_gray"
-                    android:textColorHighlight="@android:color/transparent"
+                    android:hint="••••••••"
+                    android:autofillHints="password"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,8 +195,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Esqueci minha senha"
-                android:textColor="@color/primary"
-                android:textStyle="bold"
+                android:textColor="#0F766E"
+                android:textSize="12sp"
+                android:minHeight="48dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@id/inputLayoutSenha"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -245,26 +234,27 @@
                 app:layout_constraintTop_toBottomOf="@id/tvOu">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGoogle"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="56dp"
-                    android:text="Google"
-                    android:textColor="@color/text_dark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="52dp"
+                    android:text="Continuar com Google"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    android:textColor="#1F1F1F"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    app:backgroundTint="#FFFFFF"
                     app:cornerRadius="12dp"
-                    app:strokeColor="@color/stroke_input"
-                    android:layout_marginEnd="8dp"/>
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="56dp"
-                    android:text="Facebook"
-                    android:textColor="@color/text_dark"
-                    app:cornerRadius="12dp"
-                    app:strokeColor="@color/stroke_input"
-                    android:layout_marginStart="8dp"/>
+                    app:strokeColor="#747775"
+                    app:strokeWidth="1dp"
+                    app:rippleColor="#14000000"
+                    app:icon="@drawable/google_g_logo"
+                    app:iconSize="20dp"
+                    app:iconPadding="10dp"
+                    app:iconTint="@null"
+                    app:iconGravity="textStart"/>
             </LinearLayout>
 
             <!-- Adicionado marginBottom e ancoragem para forçar a visibilidade da rolagem -->

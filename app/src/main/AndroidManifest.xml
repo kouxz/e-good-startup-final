@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -18,7 +19,7 @@
 
         <!-- Configurada como a primeira tela do app -->
         <activity
-            android:name=".views.LoginActivity"
+            android:name=".views.user.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -27,49 +28,85 @@
             </intent-filter>
         </activity>
 
-        <!-- Tela de Cadastro -->
+        <!-- Tela de Cadastro (Seletor de tipo) -->
         <activity
             android:name=".views.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- Tela de Cadastro de Pessoa -->
+        <activity
+            android:name=".views.user.UserRegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Tela de Cadastro de Concessionária -->
+        <activity
+            android:name=".views.dealer.DealerRegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Tela Dashboard de Concessionária -->
+        <activity
+            android:name=".views.dealer.DealerDashboardActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
         <!-- Tela inicial do usuário -->
         <activity
-            android:name=".views.HomeActivity"
+            android:name=".views.user.HomeActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Tela de Comparação -->
         <activity
-            android:name=".views.ComparisonActivity"
+            android:name=".views.comparison.ComparisonActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Tela de Solar -->
         <activity
-            android:name=".views.SolarActivity"
+            android:name=".views.vehicle.SolarActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Tela de Perfil -->
         <activity
-            android:name=".views.ProfileActivity"
+            android:name=".views.user.ProfileActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Tela de Veículos -->
         <activity
-            android:name=".views.VehiclesActivity"
+            android:name=".views.vehicle.VehiclesActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Tela de Detalhes do Veículo -->
         <activity
-            android:name=".views.VehicleDetailActivity"
+            android:name=".views.vehicle.VehicleDetailActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Demais telas do app (exemplo da MainActivity antiga, se ainda for usar) -->
+        <!-- Tela de Concessionárias -->
+        <activity
+            android:name=".views.dealership.ConcessionariasActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Tela de Detalhes da Concessionária -->
+        <activity
+            android:name=".views.dealership.ConcessionariaDetailActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Tela de Adicionar Veículo -->
+        <activity
+            android:name=".views.dealer.AddVehicleActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Demais telas do app -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />

@@ -40,3 +40,6 @@ credentials*.json
 *.aab
 *.log
 Thumbs.db
+
+# Local project notes and test checklists
+/docs/
