@@ -3,148 +3,150 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8FAFA"
+    android:background="@color/app_background"
     android:fitsSystemWindows="true">
 
     <include layout="@layout/include_user_header" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/userHeader"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/userHeader">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:paddingStart="16dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="16dp"
+            android:text="Veículos elétricos"
+            android:textColor="@color/app_text_primary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <!-- Title and Search -->
-            <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchInputLayout"
+            style="@style/Widget.EGood.Login.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="16dp"
+            app:endIconContentDescription="Limpar pesquisa"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_vehicle_search">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearch"
+                style="@style/Widget.EGood.Login.Input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:hint="Buscar por marca ou modelo"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:paddingStart="16dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="12dp">
+                android:paddingEnd="16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFilterAll"
+                    style="@style/Widget.EGood.Vehicle.Filter"
+                    android:checked="true"
+                    android:text="Todos" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFilterHatch"
+                    style="@style/Widget.EGood.Vehicle.Filter"
+                    android:layout_marginStart="8dp"
+                    android:text="Hatch" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFilterSUV"
+                    style="@style/Widget.EGood.Vehicle.Filter"
+                    android:layout_marginStart="8dp"
+                    android:text="SUV" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFilterCompact"
+                    style="@style/Widget.EGood.Vehicle.Filter"
+                    android:layout_marginStart="8dp"
+                    android:text="SUV compacto" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFilterLuxury"
+                    style="@style/Widget.EGood.Vehicle.Filter"
+                    android:layout_marginStart="8dp"
+                    android:text="Luxo" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vehicleRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="4dp"
+                android:paddingBottom="12dp"
+                android:scrollbars="vertical" />
+
+            <LinearLayout
+                android:id="@+id/vehicleEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_vehicle_empty" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Veículos Elétricos"
-                    android:textColor="@color/text_dark"
-                    android:textSize="24sp"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="Nenhum veículo encontrado"
+                    android:textColor="@color/app_text_primary"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/etSearch"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/white"
-                    android:drawableStart="@android:drawable/ic_search_category_default"
-                    android:drawablePadding="8dp"
-                    android:hint="Buscar veículo..."
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:textColor="@color/text_dark"
-                    android:textColorHint="@color/text_gray"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <!-- Filter Buttons -->
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="12dp">
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:text="Tente alterar a busca ou escolher outro filtro."
+                    android:textColor="@color/app_text_secondary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btnFilterAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@color/primary"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="Todos"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-
-                    <Button
-                        android:id="@+id/btnFilterHatch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@android:color/white"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="Hatch"
-                        android:textColor="@color/text_gray"
-                        android:textSize="12sp" />
-
-                    <Button
-                        android:id="@+id/btnFilterSUV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@android:color/white"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="SUV"
-                        android:textColor="@color/text_gray"
-                        android:textSize="12sp" />
-
-                    <Button
-                        android:id="@+id/btnFilterCompact"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@android:color/white"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="SUV compacto"
-                        android:textColor="@color/text_gray"
-                        android:textSize="12sp" />
-
-                    <Button
-                        android:id="@+id/btnFilterLuxury"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:background="@android:color/white"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="Luxo"
-                        android:textColor="@color/text_gray"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <!-- Vehicles List -->
-            <LinearLayout
-                android:id="@+id/vehiclesContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp" />
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- Bottom Navigation -->
     <include layout="@layout/include_user_bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

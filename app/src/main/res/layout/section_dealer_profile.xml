@@ -18,17 +18,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
                 android:background="@drawable/bg_dealer_profile_cover" />
-            <TextView
+            <ImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:text="🏢"
-                android:textSize="32sp"
-                android:textColor="#0F172A"
                 android:layout_gravity="bottom|start"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="0dp"
-                android:gravity="center"
-                android:background="@drawable/bg_badge" />
+                android:padding="18dp"
+                android:contentDescription="Concessionária"
+                android:background="@drawable/bg_badge"
+                app:srcCompat="@drawable/ic_user_dealership"
+                app:tint="@android:color/white" />
         </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textSize="20sp"
-                        android:textColor="#0F172A"
+                        android:textColor="@color/app_text_primary"
                         android:id="@+id/tvCompanyName"
                         android:textStyle="bold" />
                     <TextView
@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textSize="12sp"
-                        android:textColor="#94A3B8"
+                        android:textColor="@color/app_text_muted"
                         android:id="@+id/tvCompanyCnpj"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
@@ -72,8 +72,8 @@
                     android:text="Editar"
                     android:textSize="12sp"
                     android:textAllCaps="false"
-                    android:textColor="#475569"
-                    app:backgroundTint="#F1F3F5"
+                    android:textColor="@color/app_text_secondary"
+                    app:backgroundTint="@color/app_surface_variant"
                     app:cornerRadius="12dp" />
             </LinearLayout>
             <LinearLayout
@@ -95,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="18sp"
-                        android:textColor="#0D9488"
+                        android:textColor="@color/app_teal_content"
                         android:id="@+id/tvCompanyVehicleCount"
                         android:textStyle="bold"
                         android:gravity="center" />
@@ -104,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:text="Veículos"
                         android:textSize="11sp"
-                        android:textColor="#94A3B8"
+                        android:textColor="@color/app_text_muted"
                         android:gravity="center" />
                 </LinearLayout>
                 <LinearLayout
@@ -120,16 +120,17 @@
                         android:layout_height="wrap_content"
                         android:text="—"
                         android:textSize="18sp"
-                        android:textColor="#0D9488"
+                        android:textColor="@color/app_teal_content"
                         android:id="@+id/tvCompanyRating"
                         android:textStyle="bold"
                         android:gravity="center" />
                     <TextView
+                        android:id="@+id/tvCompanyRatingLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Avaliação"
                         android:textSize="11sp"
-                        android:textColor="#94A3B8"
+                        android:textColor="@color/app_text_muted"
                         android:gravity="center" />
                 </LinearLayout>
                 <LinearLayout
@@ -145,16 +146,16 @@
                         android:layout_height="wrap_content"
                         android:text="—"
                         android:textSize="18sp"
-                        android:textColor="#0D9488"
+                        android:textColor="@color/app_teal_content"
                         android:id="@+id/tvCompanySales"
                         android:textStyle="bold"
                         android:gravity="center" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Vendas"
+                        android:text="Vendas no mês"
                         android:textSize="11sp"
-                        android:textColor="#94A3B8"
+                        android:textColor="@color/app_text_muted"
                         android:gravity="center" />
                 </LinearLayout>
             </LinearLayout>
@@ -164,8 +165,8 @@
                 android:layout_marginBottom="12dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:strokeColor="#EDF0F3"
+                app:cardBackgroundColor="@color/app_surface"
+                app:strokeColor="@color/app_stroke"
                 app:strokeWidth="1dp">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,13 +182,13 @@
                             android:layout_height="wrap_content"
                             android:text="NOME DA EMPRESA"
                             android:textSize="10sp"
-                            android:textColor="#94A3B8" />
+                            android:textColor="@color/app_text_muted" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textSize="14sp"
-                            android:textColor="#0F172A"
+                            android:textColor="@color/app_text_primary"
                             android:id="@+id/tvCompanyFieldName"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -201,13 +202,13 @@
                             android:layout_height="wrap_content"
                             android:text="TELEFONE"
                             android:textSize="10sp"
-                            android:textColor="#94A3B8" />
+                            android:textColor="@color/app_text_muted" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textSize="14sp"
-                            android:textColor="#0F172A"
+                            android:textColor="@color/app_text_primary"
                             android:id="@+id/tvCompanyPhone"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -221,13 +222,13 @@
                             android:layout_height="wrap_content"
                             android:text="ENDEREÇO"
                             android:textSize="10sp"
-                            android:textColor="#94A3B8" />
+                            android:textColor="@color/app_text_muted" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textSize="14sp"
-                            android:textColor="#0F172A"
+                            android:textColor="@color/app_text_primary"
                             android:id="@+id/tvCompanyAddress"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -241,13 +242,13 @@
                             android:layout_height="wrap_content"
                             android:text="CIDADE / ESTADO"
                             android:textSize="10sp"
-                            android:textColor="#94A3B8" />
+                            android:textColor="@color/app_text_muted" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textSize="14sp"
-                            android:textColor="#0F172A"
+                            android:textColor="@color/app_text_primary"
                             android:id="@+id/tvCompanyCity"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -258,7 +259,7 @@
                 android:layout_height="wrap_content"
                 android:text="DESCRIÇÃO"
                 android:textSize="12sp"
-                android:textColor="#64748B"
+                android:textColor="@color/app_text_secondary"
                 android:layout_marginBottom="8dp" />
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -266,8 +267,8 @@
                 android:layout_marginBottom="12dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:strokeColor="#EDF0F3"
+                app:cardBackgroundColor="@color/app_surface"
+                app:strokeColor="@color/app_stroke"
                 app:strokeWidth="1dp">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -279,7 +280,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textSize="14sp"
-                        android:textColor="#475569"
+                        android:textColor="@color/app_text_secondary"
                         android:id="@+id/tvCompanyDescription"
                         android:lineSpacingExtra="4dp" />
                 </LinearLayout>
@@ -290,19 +291,31 @@
                 android:orientation="vertical"
                 android:padding="16dp"
                 android:background="@drawable/bg_badge_teal">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="🏅 Certificações"
-                    android:textSize="14sp"
-                    android:textColor="#0D9488"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="Certificações"
+                        app:srcCompat="@drawable/ic_dealer_certification" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Certificações"
+                        android:textSize="14sp"
+                        android:textColor="@color/app_teal_content"
+                        android:textStyle="bold" />
+                </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nenhuma certificação informada"
                     android:textSize="12sp"
-                    android:textColor="#64748B"
+                    android:textColor="@color/app_text_secondary"
                     android:layout_marginTop="8dp" />
             </LinearLayout>
             <com.google.android.material.button.MaterialButton
@@ -313,8 +326,8 @@
                 android:text="Sair"
                 android:textSize="12sp"
                 android:textAllCaps="false"
-                android:textColor="#B91C1C"
-                app:backgroundTint="#FEE2E2"
+                android:textColor="@color/app_error_text"
+                app:backgroundTint="@color/app_error_surface"
                 app:cornerRadius="12dp"
                 android:layout_marginTop="20dp" />
         </LinearLayout>

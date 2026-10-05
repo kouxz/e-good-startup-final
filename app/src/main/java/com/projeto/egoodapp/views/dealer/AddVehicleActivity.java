@@ -2,14 +2,13 @@ package com.projeto.egoodapp.views.dealer;
 
 import com.projeto.egoodapp.data.local.LocalRepository;
 import com.projeto.egoodapp.data.local.LocalSession;
-import com.projeto.egoodapp.data.local.AccountProfile;
-import com.projeto.egoodapp.views.LocalProfileForms;
+import com.projeto.egoodapp.data.model.AccountProfile;
+import com.projeto.egoodapp.views.account.LocalProfileForms;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -18,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import com.bumptech.glide.Glide;
@@ -26,10 +26,10 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.projeto.egoodapp.R;
-import com.projeto.egoodapp.models.Vehicle;
+import com.projeto.egoodapp.data.model.Vehicle;
 
 
-public class AddVehicleActivity extends AppCompatActivity {
+public class AddVehicleActivity extends com.projeto.egoodapp.views.common.session.AuthenticatedActivity {
 
     private TextInputEditText editMarca, editModelo, editAno, editQuilometragem;
     private TextInputEditText editPreco, editBateria, editAutonomia, editConsumo, editPotencia, editRecarga, editCor, editDescricao;
@@ -42,6 +42,7 @@ public class AddVehicleActivity extends AppCompatActivity {
     private final ExecutorService photoWorker = Executors.newSingleThreadExecutor();
     private AccountProfile owner;
     private boolean copyingPhoto;
+    private boolean published;
     private String selectedImageUri = "";
     private ActivityResultLauncher<String[]> galleryLauncher;
 
@@ -51,6 +52,7 @@ public class AddVehicleActivity extends AppCompatActivity {
         owner = LocalSession.current(this, "concessionaria");
         if (owner == null || !owner.isDealer()) { LocalSession.logout(this); return; }
         setContentView(R.layout.activity_add_vehicle);
+        com.projeto.egoodapp.views.common.form.InputLimits.vehicle(this);
 
         setupGalleryLauncher();
         initializeViews();
@@ -88,25 +90,40 @@ public class AddVehicleActivity extends AppCompatActivity {
             copyingPhoto = true; btnPublicar.setEnabled(false); photoUploadContainer.setEnabled(false);
             photoWorker.execute(() -> {
                 try {
-                    String local = LocalRepository.get(this).copyPhoto(selectedUri);
+                    LocalRepository repository = LocalRepository.get(this);
+                    String prepared = repository.preparePhoto(selectedUri);
                     runOnUiThread(() -> {
-                        if (isFinishing() || isDestroyed()) return;
-                        selectedImageUri = local;
-                        Glide.with(this).load(Uri.parse(local)).centerCrop().into(previewImage);
+                        if (isFinishing() || isDestroyed()) {
+                            repository.discardPreparedPhoto(prepared);
+                            return;
+                        }
+                        String previous = selectedImageUri;
+                        selectedImageUri = prepared;
+                        repository.discardPreparedPhoto(previous);
+                        Glide.with(this).load(Uri.parse(prepared)).centerCrop().into(previewImage);
                         previewImage.setVisibility(ImageView.VISIBLE); photoUploadPlaceholder.setVisibility(LinearLayout.GONE);
                         copyingPhoto = false; btnPublicar.setEnabled(true); photoUploadContainer.setEnabled(true);
                     });
-                } catch (java.io.IOException | SecurityException e) {
+                } catch (java.io.IOException | SecurityException error) {
                     runOnUiThread(() -> {
                         if (isFinishing() || isDestroyed()) return;
                         copyingPhoto = false; btnPublicar.setEnabled(true); photoUploadContainer.setEnabled(true);
-                        Toast.makeText(this, "Não foi possível salvar a foto. Selecione outra imagem.", Toast.LENGTH_LONG).show();
+                        String message = com.projeto.egoodapp.views.common.feedback.ErrorMessages.safe(error);
+                        Toast.makeText(this, message == null || message.trim().isEmpty()
+                                ? "Não foi possível processar a foto. Selecione outra imagem."
+                                : message, Toast.LENGTH_LONG).show();
                     });
                 }
             });
         });
     }
-    @Override protected void onDestroy() { photoWorker.shutdown(); super.onDestroy(); }
+    @Override protected void onDestroy() {
+        if (isFinishing() && !published) {
+            LocalRepository.get(this).discardPreparedPhoto(selectedImageUri);
+        }
+        photoWorker.shutdown();
+        super.onDestroy();
+    }
 
     @Override protected void onResume() {
         super.onResume();
@@ -138,7 +155,8 @@ public class AddVehicleActivity extends AppCompatActivity {
         String[] categorias = {"Hatch", "SUV", "SUV compacto", "Luxo"};
         spinnerCategoria.setAdapter(new ArrayAdapter<>(
                 this, R.layout.item_add_vehicle_category, categorias));
-        spinnerCategoria.setDropDownBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        spinnerCategoria.setDropDownBackgroundDrawable(new ColorDrawable(
+                ContextCompat.getColor(this, R.color.app_surface)));
         if (spinnerCategoria.getText().toString().isEmpty()) {
             spinnerCategoria.setText(categorias[0], false);
         }
@@ -172,17 +190,17 @@ public class AddVehicleActivity extends AppCompatActivity {
         try {
             // Criar novo veículo com os dados do formulário
             Vehicle novoVeiculo = new Vehicle(
-                    editMarca.getText().toString(),
-                    editModelo.getText().toString(),
+                    com.projeto.egoodapp.security.InputRules.clean(editMarca.getText().toString(), com.projeto.egoodapp.security.InputRules.VEHICLE_TEXT),
+                    com.projeto.egoodapp.security.InputRules.clean(editModelo.getText().toString(), com.projeto.egoodapp.security.InputRules.VEHICLE_TEXT),
                     Integer.parseInt(editAno.getText().toString()),
                     editQuilometragem.getText().toString().trim().isEmpty() ? 0 : Integer.parseInt(editQuilometragem.getText().toString()),
                     Double.parseDouble(editPreco.getText().toString()),
                     spinnerCategoria.getText().toString(),
                     Integer.parseInt(editBateria.getText().toString()),
                     Integer.parseInt(editAutonomia.getText().toString()),
-                    editCor.getText().toString(),
-                    editDescricao.getText().toString(),
-                    selectedImageUri
+                    com.projeto.egoodapp.security.InputRules.clean(editCor.getText().toString(), com.projeto.egoodapp.security.InputRules.VEHICLE_TEXT),
+                    com.projeto.egoodapp.security.InputRules.clean(editDescricao.getText().toString(), com.projeto.egoodapp.security.InputRules.DESCRIPTION),
+                    ""
             );
             novoVeiculo.setConsumo(VehicleSpecifications.consumption(editConsumo.getText().toString()));
             novoVeiculo.setPotencia(VehicleSpecifications.power(editPotencia.getText().toString()));
@@ -194,7 +212,9 @@ public class AddVehicleActivity extends AppCompatActivity {
                 Toast.makeText(this, "Verifique os valores numéricos do veículo", Toast.LENGTH_LONG).show(); return;
             }
             // Salvar no catálogo local compartilhado
-            salvarVeiculoLocalmente(novoVeiculo);
+            LocalRepository.get(this).publishVehicle(owner.uid, novoVeiculo, selectedImageUri);
+            published = true;
+            selectedImageUri = "";
 
             Toast.makeText(this, "Veículo publicado com sucesso!", Toast.LENGTH_SHORT).show();
 
@@ -204,8 +224,10 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Erro ao processar números. Verifique os campos", Toast.LENGTH_SHORT).show();
+        } catch (java.io.IOException e) {
+            Toast.makeText(this, com.projeto.egoodapp.views.common.feedback.ErrorMessages.safe(e), Toast.LENGTH_LONG).show();
         } catch (IllegalArgumentException | IllegalStateException e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, com.projeto.egoodapp.views.common.feedback.ErrorMessages.safe(e), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -226,9 +248,5 @@ public class AddVehicleActivity extends AppCompatActivity {
         try { VehicleSpecifications.charging(editRecarga.getText().toString()); editRecarga.setError(null); }
         catch (RuntimeException invalid) { editRecarga.setError("Informe o tipo e a potência de recarga"); technical = false; }
         return complete && technical;
-    }
-
-    private void salvarVeiculoLocalmente(Vehicle veiculo) {
-        LocalRepository.get(this).addVehicle(owner.uid, veiculo);
     }
 }

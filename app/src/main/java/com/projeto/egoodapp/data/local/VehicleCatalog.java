@@ -1,6 +1,6 @@
 package com.projeto.egoodapp.data.local;
 
-import com.projeto.egoodapp.models.Vehicle;
+import com.projeto.egoodapp.data.model.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

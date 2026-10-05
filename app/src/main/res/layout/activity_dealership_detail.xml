@@ -3,396 +3,456 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/surface_white">
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <!-- Hero Section with Gradient -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_dealership_hero"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp"
-        android:gravity="bottom"
-        android:background="@drawable/bg_gradient_teal">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="22dp">
 
-        <!-- Back Button -->
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVoltar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="←"
-            android:textColor="@android:color/white"
-            android:textSize="28sp"
-            android:layout_marginBottom="16dp"/>
+            android:minHeight="48dp"
+            android:text="Voltar"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/ic_vehicle_back"
+            app:iconTint="@color/white" />
 
-        <!-- Icon -->
-        <LinearLayout
+        <FrameLayout
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:background="@android:color/white"
-            android:alpha="0.2"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🏢"
-                android:textSize="32sp"/>
-        </LinearLayout>
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_user_icon_tile">
 
-        <!-- Name -->
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:contentDescription="Concessionária"
+                app:srcCompat="@drawable/ic_user_dealership"
+                app:tint="@color/primary_dark" />
+        </FrameLayout>
+
         <TextView
             android:id="@+id/tvNomeConcessionaria"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome da Concessionária"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="12dp"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            android:textStyle="bold" />
 
-        <!-- Rating and Distance -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDealerRating"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="⭐ 4.8"
-                android:textColor="@android:color/white"
-                android:alpha="0.8"
+                android:minHeight="40dp"
+                android:minWidth="0dp"
+                android:text="Sem avaliações"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:textSize="12sp"
-                android:layout_marginEnd="16dp"/>
+                app:backgroundTint="@android:color/transparent"
+                app:icon="@drawable/ic_rating_star_outline"
+                app:iconSize="18dp"
+                app:iconTint="@null" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="#66FFFFFF" />
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/ic_profile_location"
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/tvDistancia"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="📍 2.3 km"
-                android:textColor="@android:color/white"
-                android:alpha="0.8"
-                android:textSize="12sp"/>
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Content Area with ScrollView -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="24dp"
-            android:paddingBottom="80dp">
+            android:paddingStart="12dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="28dp">
 
-            <!-- Info Grid -->
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="2"
-                android:rowCount="2"
-                android:layout_marginHorizontal="0dp"
-                android:layout_marginVertical="0dp">
+                android:rowCount="2">
 
-                <!-- Distance Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_row="0"
+                    android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:padding="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardElevation="2dp">
+                    android:layout_gravity="fill"
+                    android:layout_margin="5dp"
+                    android:layout_row="0"
+                    android:minHeight="124dp"
+                    app:cardBackgroundColor="@color/surface_white"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/app_stroke"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:padding="14dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:importantForAccessibility="no"
+                            app:srcCompat="@drawable/ic_profile_location"
+                            app:tint="#EF4444" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="📍"
-                            android:textSize="28sp"
-                            android:layout_marginBottom="8dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
                             android:text="Distância"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_gray"
-                            android:layout_marginBottom="4dp"/>
+                            android:textColor="@color/app_text_secondary"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tvDistanciaCard"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="2.3 km"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_dark"/>
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:textColor="@color/app_text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Vehicles Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_row="0"
+                    android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:padding="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardElevation="2dp">
+                    android:layout_gravity="fill"
+                    android:layout_margin="5dp"
+                    android:layout_row="0"
+                    android:minHeight="124dp"
+                    app:cardBackgroundColor="@color/surface_white"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/app_stroke"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:padding="14dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:importantForAccessibility="no"
+                            app:srcCompat="@drawable/ic_dealer_vehicles"
+                            app:tint="#F97316" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🚗"
-                            android:textSize="28sp"
-                            android:layout_marginBottom="8dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
                             android:text="Veículos EV"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_gray"
-                            android:layout_marginBottom="4dp"/>
+                            android:textColor="@color/app_text_secondary"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tvVeiculos"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="12 modelos"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_dark"/>
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:textColor="@color/app_text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Phone Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_row="1"
+                    android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:padding="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardElevation="2dp">
+                    android:layout_gravity="fill"
+                    android:layout_margin="5dp"
+                    android:layout_row="1"
+                    android:minHeight="124dp"
+                    app:cardBackgroundColor="@color/surface_white"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/app_stroke"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:padding="14dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:importantForAccessibility="no"
+                            app:srcCompat="@drawable/ic_profile_phone"
+                            app:tint="#2563EB" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="📞"
-                            android:textSize="28sp"
-                            android:layout_marginBottom="8dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
                             android:text="Telefone"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_gray"
-                            android:layout_marginBottom="4dp"/>
+                            android:textColor="@color/app_text_secondary"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tvTelefone"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="(15) 3232-4500"
+                            android:layout_marginTop="4dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:textColor="@color/app_text_primary"
                             android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_dark"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Hours Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_row="1"
+                    android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:padding="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardElevation="2dp">
+                    android:layout_gravity="fill"
+                    android:layout_margin="5dp"
+                    android:layout_row="1"
+                    android:minHeight="124dp"
+                    app:cardBackgroundColor="@color/surface_white"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/app_stroke"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:padding="14dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:importantForAccessibility="no"
+                            app:srcCompat="@drawable/ic_dealership_clock" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🕐"
-                            android:textSize="28sp"
-                            android:layout_marginBottom="8dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
                             android:text="Horário"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_gray"
-                            android:layout_marginBottom="4dp"/>
+                            android:textColor="@color/app_text_secondary"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/tvHorario"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Seg–Sex 8h–18h"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:textColor="@color/app_text_primary"
                             android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_dark"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </GridLayout>
 
-            <!-- Address Section -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="18dp"
                 android:text="Endereço"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_dark"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="12dp"/>
+                android:textColor="@color/app_text_primary"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:background="@color/teal_light"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📌"
-                    android:textSize="24sp"
-                    android:layout_marginEnd="12dp"/>
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/teal_light"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/app_stroke"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_profile_location"
+                        app:tint="@color/primary_dark" />
 
                     <TextView
                         android:id="@+id/tvEndereco"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Av. Paulista, 1500 — Sorocaba, SP"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/app_teal_content"
                         android:textSize="13sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/teal_dark"/>
+                        android:textStyle="bold" />
 
-                    <TextView
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnMaps"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Abrir no Maps →"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/primary"
-                        android:layout_marginTop="4dp"/>
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="Mapa"
+                        android:textAllCaps="false"
+                        android:textColor="@color/primary_dark"
+                        app:backgroundTint="@android:color/transparent"
+                        app:icon="@drawable/ic_dealer_chevron"
+                        app:iconGravity="textEnd"
+                        app:iconTint="@color/primary_dark" />
                 </LinearLayout>
-            </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <!-- Brands Section -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="18dp"
                 android:text="Marcas disponíveis"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_dark"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="12dp"/>
+                android:textColor="@color/app_text_primary"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
+            <com.google.android.material.chip.ChipGroup
                 android:id="@+id/containerMarcas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="24dp"/>
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                app:chipSpacingHorizontal="8dp"
+                app:chipSpacingVertical="4dp" />
 
-            <!-- Action Buttons -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnVerVeiculos"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="🚗 Ver todos os veículos"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:minHeight="52dp"
+                android:text="Ver todos os veículos"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/primary"
-                app:cornerRadius="12dp"/>
+                app:backgroundTint="@color/primary"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_dealer_vehicles"
+                app:iconTint="@color/white" />
 
             <TextView
                 android:id="@+id/tvInterestAvailability"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:textSize="12sp"
-                android:textColor="@color/text_gray" />
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/app_text_secondary"
+                android:textSize="12sp" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLigar"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:minHeight="52dp"
                 android:text="Mostrar interesse"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_dark"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/primary"
-                android:layout_marginBottom="24dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:cornerRadius="12dp"
+                app:icon="@drawable/ic_dealer_contacts"
+                app:iconTint="@color/primary_dark"
                 app:strokeColor="@color/primary"
-                app:strokeWidth="2dp"/>
+                app:strokeWidth="1dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

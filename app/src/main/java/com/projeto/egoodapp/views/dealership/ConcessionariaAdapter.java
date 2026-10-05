@@ -1,90 +1,123 @@
 package com.projeto.egoodapp.views.dealership;
 
-import android.content.Context;
-import android.content.Intent;
+import com.projeto.egoodapp.data.model.Concessionaria;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.google.android.material.button.MaterialButton;
 import com.projeto.egoodapp.R;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class ConcessionariaAdapter extends RecyclerView.Adapter<ConcessionariaAdapter.ViewHolder> {
+    public interface Listener {
+        void onOpen(Concessionaria dealership);
+        void onVehicles(Concessionaria dealership);
+        void onRate(Concessionaria dealership);
+    }
 
-    private List<Concessionaria> lista;
-    private Context context;
+    private final List<Concessionaria> dealerships = new ArrayList<>();
+    private final Listener listener;
 
-    public ConcessionariaAdapter(List<Concessionaria> lista) {
-        this.lista = lista;
+    public ConcessionariaAdapter(Listener listener) {
+        this.listener = listener;
+        setHasStableIds(true);
+    }
+
+    public void submitList(List<Concessionaria> updated) {
+        dealerships.clear();
+        dealerships.addAll(updated);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        String key = dealerships.get(position).getStableKey();
+        return key == null ? RecyclerView.NO_ID : key.hashCode();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        this.context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.item_dealership, parent, false);
-        return new ViewHolder(view, context);
+        return new ViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_dealership, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Concessionaria item = lista.get(position);
-
-        holder.txtNome.setText(item.getNome());
-        holder.txtEndereco.setText(item.getEndereco());
-        holder.txtDistancia.setText(item.hasLocation() ? String.format(Locale.getDefault(), "%.1f km", item.getDistanciaKm()) : "Cadastrada no app");
-
-        // Define o ícone de curtida com base no estado
-        atualizarIconeLike(holder.btnLike, item.isCurtida());
-
-        // Lógica de clique no Like
-        holder.btnLike.setOnClickListener(v -> {
-            item.setCurtida(!item.isCurtida());
-            atualizarIconeLike(holder.btnLike, item.isCurtida());
-        });
-
-        // Clique na concessionária para abrir detalhes
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ConcessionariaDetailActivity.class);
-            intent.putExtra("nome", item.getNome());
-            intent.putExtra("endereco", item.getEndereco());
-            intent.putExtra("distancia", item.getDistanciaKm());
-            intent.putExtra("telefone", item.getTelefone());
-            intent.putExtra("dealerId", item.getDealerId());
-            intent.putExtra("hasLocation", item.hasLocation());
-            context.startActivity(intent);
-        });
-    }
-
-    private void atualizarIconeLike(ImageButton btn, boolean isCurtida) {
-        if (isCurtida) {
-            btn.setImageResource(android.R.drawable.btn_star_big_on);
-        } else {
-            btn.setImageResource(android.R.drawable.btn_star_big_off);
-        }
+        holder.bind(dealerships.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return lista.size();
+        return dealerships.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNome, txtEndereco, txtDistancia;
-        ImageButton btnLike;
+    final class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView name;
+        private final TextView address;
+        private final TextView distance;
+        private final TextView rating;
+        private final TextView registered;
+        private final TextView vehicleCount;
+        private final TextView brands;
+        private final ImageView vehicleIcon;
+        private final ImageButton rate;
+        private final MaterialButton vehicles;
+        private final MaterialButton detail;
 
-        public ViewHolder(View itemView, Context context) {
+        ViewHolder(View itemView) {
             super(itemView);
-            txtNome = itemView.findViewById(R.id.txtNome);
-            txtEndereco = itemView.findViewById(R.id.txtEndereco);
-            txtDistancia = itemView.findViewById(R.id.txtDistancia);
-            btnLike = itemView.findViewById(R.id.btnLike);
+            name = itemView.findViewById(R.id.txtNome);
+            address = itemView.findViewById(R.id.txtEndereco);
+            distance = itemView.findViewById(R.id.txtDistancia);
+            rating = itemView.findViewById(R.id.txtRating);
+            registered = itemView.findViewById(R.id.txtRegistered);
+            vehicleCount = itemView.findViewById(R.id.txtVehicleCount);
+            brands = itemView.findViewById(R.id.txtBrands);
+            vehicleIcon = itemView.findViewById(R.id.iconVehicleCount);
+            rate = itemView.findViewById(R.id.btnLike);
+            vehicles = itemView.findViewById(R.id.btnDealerVehicles);
+            detail = itemView.findViewById(R.id.btnDealerDetail);
+        }
+
+        void bind(Concessionaria item) {
+            name.setText(item.getNome());
+            address.setText(item.getEndereco());
+            distance.setText(item.hasLocation()
+                    ? String.format(Locale.forLanguageTag("pt-BR"), "%.1f km", item.getDistanciaKm())
+                    : "Distância não informada");
+            rating.setText(DealerRatingDialogs.summary(item.getRatingAverage(), item.getRatingCount()));
+            registered.setVisibility(item.isLocal() ? View.VISIBLE : View.GONE);
+            rate.setImageResource(item.getUserRating() == null
+                    ? R.drawable.ic_rating_star_outline : R.drawable.ic_rating_star_filled);
+            rate.setContentDescription((item.getUserRating() == null ? "Avaliar " : "Alterar avaliação de ")
+                    + item.getNome());
+
+            boolean local = item.isLocal();
+            vehicleIcon.setVisibility(local ? View.VISIBLE : View.GONE);
+            vehicleCount.setVisibility(local ? View.VISIBLE : View.GONE);
+            brands.setVisibility(local ? View.VISIBLE : View.GONE);
+            vehicles.setVisibility(local ? View.VISIBLE : View.GONE);
+            if (local) {
+                int count = item.getVehicleCount();
+                vehicleCount.setText(count + (count == 1 ? " veículo elétrico" : " veículos elétricos"));
+                brands.setText(item.getBrands().isEmpty()
+                        ? "Nenhuma marca cadastrada" : String.join(" • ", item.getBrands()));
+            }
+
+            itemView.setContentDescription("Abrir concessionária " + item.getNome());
+            itemView.setOnClickListener(view -> listener.onOpen(item));
+            detail.setOnClickListener(view -> listener.onOpen(item));
+            vehicles.setOnClickListener(view -> listener.onVehicles(item));
+            rate.setOnClickListener(view -> listener.onRate(item));
         }
     }
 }

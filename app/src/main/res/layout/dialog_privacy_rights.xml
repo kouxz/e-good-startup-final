@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="24dp">
+        <TextView android:id="@+id/privacyRightsText" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textColor="@color/app_text_primary" android:textSize="14sp" />
+        <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/switchPrivacyLocation"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp"
+            android:layout_marginTop="16dp" android:text="Autorizar uso da localização"
+            android:textColor="@color/app_text_primary" app:thumbTint="@color/dealer_switch_thumb" app:trackTint="@color/dealer_switch_track" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="A autorização do app e a permissão Android são independentes. Você pode continuar sem GPS."
+            android:textColor="@color/app_text_secondary" android:textSize="12sp" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnPrivacySystemSettings"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minHeight="48dp" android:layout_marginTop="12dp"
+            android:text="Permissões Android" android:textAllCaps="false" android:textColor="@color/primary"
+            app:strokeColor="@color/primary" app:cornerRadius="12dp" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnPrivacyRequest"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minHeight="48dp" android:text="Preparar solicitação sobre meus dados"
+            android:textAllCaps="false" android:textColor="@color/primary" app:strokeColor="@color/primary" app:cornerRadius="12dp" />
+    </LinearLayout>
+</ScrollView>

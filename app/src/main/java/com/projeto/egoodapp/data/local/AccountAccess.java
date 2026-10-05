@@ -1,5 +1,7 @@
 package com.projeto.egoodapp.data.local;
 
+import com.projeto.egoodapp.data.model.AccountProfile;
+
 /** The account type belongs to the saved UID, never to the selected login tab. */
 public final class AccountAccess {
     public enum Decision { ALLOW, REJECT, CONFIRM_TYPE }

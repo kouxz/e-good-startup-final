@@ -9,12 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.projeto.egoodapp.R;
-import com.projeto.egoodapp.data.local.AccountProfile;
+import com.projeto.egoodapp.data.model.AccountProfile;
 import java.util.Locale;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -22,8 +23,6 @@ import java.util.function.Supplier;
 /** Shared dealership chrome; activities retain ownership of their content and destinations. */
 public final class DealerNavigation {
     private static final String DRAWER_OPEN = "dealerDrawerOpen";
-    private static final int ACTIVE = Color.rgb(0, 139, 122);
-    private static final int INACTIVE = Color.rgb(148, 163, 184);
     private final AppCompatActivity activity;
     private final DrawerLayout root;
     private final View drawer;
@@ -96,9 +95,13 @@ public final class DealerNavigation {
     }
 
     public void select(String section) {
+        int activeColor = ContextCompat.getColor(activity, R.color.app_teal_content);
+        int inactiveColor = ContextCompat.getColor(activity, R.color.app_text_muted);
+        int drawerColor = ContextCompat.getColor(activity, R.color.app_text_secondary);
+        int logoutColor = ContextCompat.getColor(activity, R.color.app_error_text);
         for (int i = 0; i < bottomIds.length; i++) {
             boolean selected = destinations[i].equals(section);
-            int color = selected ? ACTIVE : INACTIVE;
+            int color = selected ? activeColor : inactiveColor;
             activity.findViewById(bottomIds[i]).setSelected(selected);
             ((ImageView) activity.findViewById(bottomIcons[i])).setColorFilter(color);
             ((TextView) activity.findViewById(bottomLabels[i])).setTextColor(color);
@@ -106,8 +109,8 @@ public final class DealerNavigation {
         }
         for (int i = 0; i < drawerIds.length; i++) {
             boolean selected = i < destinations.length - 1 && destinations[i].equals(section);
-            int color = i == destinations.length - 1 ? Color.rgb(239, 68, 68)
-                    : selected ? ACTIVE : Color.rgb(51, 65, 85);
+            int color = i == destinations.length - 1 ? logoutColor
+                    : selected ? activeColor : drawerColor;
             activity.findViewById(drawerIds[i]).setSelected(selected);
             ((ImageView) activity.findViewById(drawerIcons[i])).setColorFilter(color);
             ((TextView) activity.findViewById(drawerLabels[i])).setTextColor(color);

@@ -7,8 +7,8 @@
     android:layout_marginBottom="12dp"
     app:cardCornerRadius="16dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="#FFFFFF"
-    app:strokeColor="#EDF0F3"
+    app:cardBackgroundColor="@color/app_surface"
+    app:strokeColor="@color/app_stroke"
     app:strokeWidth="1dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_height="44dp"
                 android:text=""
                 android:textSize="14sp"
-                android:textColor="#0D9488"
+                android:textColor="@color/app_teal_content"
                 android:id="@+id/tvInterestAvatar"
                 android:gravity="center"
                 android:background="@drawable/bg_badge_teal"
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textSize="14sp"
-                    android:textColor="#0F172A"
+                    android:textColor="@color/app_text_primary"
                     android:id="@+id/tvInterestName"
                     android:textStyle="bold" />
                 <TextView
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textSize="12sp"
-                    android:textColor="#94A3B8"
+                    android:textColor="@color/app_text_muted"
                     android:id="@+id/tvInterestVehicle"
                     android:layout_marginTop="2dp" />
             </LinearLayout>
@@ -63,8 +63,6 @@
                 android:minHeight="48dp"
                 android:gravity="center"
                 android:padding="8dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:background="@drawable/bg_badge_teal" />
         </LinearLayout>
         <TextView
@@ -72,7 +70,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="12sp"
-            android:textColor="#64748B"
+            android:textColor="@color/app_text_secondary"
             android:id="@+id/tvInterestPhone"
             android:layout_marginTop="8dp" />
         <TextView
@@ -80,9 +78,23 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="11sp"
-            android:textColor="#94A3B8"
+            android:textColor="@color/app_text_muted"
             android:id="@+id/tvInterestDate"
             android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/tvInterestOutcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_badge_teal"
+            android:paddingStart="10dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="6dp"
+            android:textColor="@color/contact_sale_text"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,34 +103,22 @@
             android:layout_marginTop="8dp">
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:id="@+id/btnInterestWhatsApp"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:text="WhatsApp"
-                android:textSize="11sp"
-                android:textAllCaps="false"
-                android:textColor="#0D9488"
-                app:backgroundTint="#E0F8F7"
-                app:cornerRadius="12dp"
-                android:layout_weight="1"
-                android:minWidth="0dp"
-                android:layout_marginEnd="4dp"
-                android:enabled="false"
-                android:alpha="0.4" />
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/btnInterestCall"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:text="Ligar"
                 android:textSize="11sp"
                 android:textAllCaps="false"
-                android:textColor="#475569"
-                app:backgroundTint="#F1F3F5"
+                android:textColor="@color/app_text_secondary"
+                app:backgroundTint="@color/app_surface_variant"
                 app:cornerRadius="12dp"
                 android:layout_weight="1"
                 android:minWidth="0dp"
-                android:layout_marginEnd="4dp" />
+                android:layout_marginEnd="4dp"
+                app:icon="@drawable/ic_profile_phone"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconTint="@color/app_icon_neutral" />
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/btnInterestEmail"
@@ -127,12 +127,33 @@
                 android:text="E-mail"
                 android:textSize="11sp"
                 android:textAllCaps="false"
-                android:textColor="#475569"
-                app:backgroundTint="#F1F3F5"
+                android:textColor="@color/app_text_secondary"
+                app:backgroundTint="@color/app_surface_variant"
                 app:cornerRadius="12dp"
                 android:layout_weight="1"
                 android:minWidth="0dp"
-                android:layout_marginEnd="4dp" />
+                android:layout_marginStart="4dp"
+                app:icon="@drawable/ic_login_email"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconTint="@color/app_icon_neutral" />
         </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:id="@+id/btnInterestStatusAction"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:minHeight="48dp"
+            android:text="Atualizar andamento"
+            android:textAllCaps="false"
+            android:textColor="@color/app_teal_content"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ic_dealer_chevron"
+            app:iconGravity="textEnd"
+            app:iconSize="18dp"
+            app:iconTint="@color/app_teal_content"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="1dp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

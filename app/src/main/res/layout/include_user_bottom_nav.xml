@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomNav" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical"
-    android:background="#FFFFFF" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9" />
+    android:background="@color/app_surface" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/app_surface_variant" />
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingStart="6dp" android:paddingEnd="6dp">
         <LinearLayout android:id="@+id/btnHome" style="@style/Widget.EGood.UserNavItem" android:contentDescription="Início"><ImageView android:id="@+id/userNavHomeIcon" style="@style/Widget.EGood.UserNavIcon" app:srcCompat="@drawable/ic_user_home" /><TextView android:id="@+id/userNavHomeLabel" style="@style/Widget.EGood.UserNavLabel" android:text="Início" /><View android:id="@+id/userNavHomeDot" style="@style/Widget.EGood.UserNavDot" /></LinearLayout>
         <LinearLayout android:id="@+id/btnVehicles" style="@style/Widget.EGood.UserNavItem" android:contentDescription="Veículos"><ImageView android:id="@+id/userNavVehiclesIcon" style="@style/Widget.EGood.UserNavIcon" app:srcCompat="@drawable/ic_dealer_vehicles" /><TextView android:id="@+id/userNavVehiclesLabel" style="@style/Widget.EGood.UserNavLabel" android:text="Veículos" /><View android:id="@+id/userNavVehiclesDot" style="@style/Widget.EGood.UserNavDot" /></LinearLayout>

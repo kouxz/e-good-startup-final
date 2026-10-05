@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_dark">#F8FAFC</color>
+    <color name="text_gray">#94A3B8</color>
+    <color name="bg_input">#1E293B</color>
+    <color name="stroke_input">#334155</color>
+    <color name="surface_white">#111827</color>
+    <color name="background_app">#0F172A</color>
+    <color name="teal_light">#123F3D</color>
+    <color name="stroke_card">#334155</color>
+    <color name="app_background">#0F172A</color>
+    <color name="app_surface">#111827</color>
+    <color name="app_surface_variant">#1E293B</color>
+    <color name="app_text_primary">#F8FAFC</color>
+    <color name="app_text_secondary">#CBD5E1</color>
+    <color name="app_text_muted">#94A3B8</color>
+    <color name="app_stroke">#334155</color>
+    <color name="app_icon_neutral">#CBD5E1</color>
+    <color name="app_teal_content">#5EEAD4</color>
+    <color name="app_error_surface">#3F1D24</color>
+    <color name="app_error_text">#FCA5A5</color>
+    <color name="app_info_surface">#1E3A5F</color>
+    <color name="app_warning_surface">#422006</color>
+    <color name="contact_new_surface">#123F3D</color>
+    <color name="contact_new_text">#5EEAD4</color>
+    <color name="contact_active_surface">#1E3A5F</color>
+    <color name="contact_active_text">#93C5FD</color>
+    <color name="contact_finished_surface">#1E293B</color>
+    <color name="contact_finished_text">#CBD5E1</color>
+    <color name="contact_sale_surface">#143D2A</color>
+    <color name="contact_sale_text">#86EFAC</color>
+    <color name="contact_no_sale_surface">#3F1D24</color>
+    <color name="contact_no_sale_text">#FCA5A5</color>
+</resources>

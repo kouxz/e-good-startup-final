@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F8FAFC" android:fitsSystemWindows="true">
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/app_background" android:fitsSystemWindows="true">
     <include layout="@layout/include_user_header" />
     <ScrollView android:layout_width="0dp" android:layout_height="0dp" android:fillViewport="true" android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/userHeader" app:layout_constraintBottom_toTopOf="@id/bottomNav" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingBottom="20dp">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@color/primary"
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingBottom="96dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_user_hero_rounded"
                 android:paddingStart="16dp" android:paddingTop="16dp" android:paddingEnd="16dp" android:paddingBottom="22dp">
                 <TextView android:id="@+id/tvUserGreeting" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Olá, Usuário" android:textColor="#DFFFFE" android:textSize="13sp" />
                 <TextView android:id="@+id/tvTimeGreeting" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="Boa tarde!" android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold" />
@@ -30,7 +30,7 @@
             </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="12dp" android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="16dp" app:cardElevation="2dp" app:strokeColor="#E2E8F0" app:strokeWidth="1dp">
+                app:cardBackgroundColor="@color/app_surface" app:cardCornerRadius="16dp" app:cardElevation="2dp" app:strokeColor="@color/app_stroke" app:strokeWidth="1dp">
                 <LinearLayout android:id="@+id/quickActionsRow" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="6dp" android:paddingVertical="10dp">
                     <LinearLayout android:id="@+id/quickBtnVehicles" style="@style/Widget.EGood.HomeQuickAction"><ImageView style="@style/Widget.EGood.HomeQuickIcon" android:contentDescription="Veículos" app:srcCompat="@drawable/ic_dealer_vehicles" /><TextView style="@style/Widget.EGood.HomeQuickLabel" android:text="Veículos" /></LinearLayout>
                     <LinearLayout android:id="@+id/quickBtnComparison" style="@style/Widget.EGood.HomeQuickAction"><ImageView style="@style/Widget.EGood.HomeQuickIcon" android:contentDescription="Comparar" app:srcCompat="@drawable/ic_user_compare" /><TextView style="@style/Widget.EGood.HomeQuickLabel" android:text="Comparar" /></LinearLayout>
@@ -40,30 +40,35 @@
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="20dp" android:layout_marginEnd="16dp" android:gravity="center_vertical">
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Veículos em destaque" android:textColor="#0F172A" android:textSize="17sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Veículos em destaque" android:textColor="@color/app_text_primary" android:textSize="17sp" android:textStyle="bold" />
                 <TextView android:id="@+id/btnSeeAll" android:layout_width="wrap_content" android:layout_height="48dp" android:gravity="center" android:minWidth="64dp" android:text="Ver todos" android:textColor="#00AFA5" android:textSize="12sp" />
             </LinearLayout>
             <LinearLayout android:id="@+id/homeFeaturedList" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:orientation="horizontal" />
 
-            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="20dp" android:layout_marginEnd="16dp" app:cardBackgroundColor="#DDF7F6" app:cardCornerRadius="14dp" app:cardElevation="0dp">
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="20dp" android:layout_marginEnd="16dp" app:cardBackgroundColor="@color/teal_light" app:cardCornerRadius="14dp" app:cardElevation="0dp">
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:padding="12dp">
                     <ImageView android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/bg_user_icon_tile" android:padding="8dp" android:contentDescription="Dica" app:srcCompat="@drawable/ic_user_tip" />
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:orientation="vertical">
-                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Dica de sustentabilidade" android:textColor="#0F172A" android:textSize="12sp" android:textStyle="bold" />
-                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="Estimativa ilustrativa: veículos elétricos podem reduzir emissões, conforme a fonte da energia e o uso." android:textColor="#475569" android:textSize="10sp" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Dica de sustentabilidade" android:textColor="@color/app_text_primary" android:textSize="12sp" android:textStyle="bold" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="Estimativa ilustrativa: veículos elétricos podem reduzir emissões, conforme a fonte da energia e o uso." android:textColor="@color/app_text_secondary" android:textSize="10sp" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginTop="20dp" android:layout_marginEnd="16dp" android:gravity="center_vertical">
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Concessionárias próximas" android:textColor="#0F172A" android:textSize="17sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Concessionárias próximas" android:textColor="@color/app_text_primary" android:textSize="17sp" android:textStyle="bold" />
                 <TextView android:id="@+id/btnSeeAllDealers" android:layout_width="wrap_content" android:layout_height="48dp" android:gravity="center" android:minWidth="64dp" android:text="Ver todas" android:textColor="#00AFA5" android:textSize="12sp" />
             </LinearLayout>
             <LinearLayout android:id="@+id/homeDealersList" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:orientation="vertical" />
-            <com.google.android.material.card.MaterialCardView android:id="@+id/homeDealerEmpty" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="14dp" app:cardElevation="0dp" app:strokeColor="#E2E8F0" app:strokeWidth="1dp">
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:padding="20dp" android:text="Nenhuma concessionária local cadastrada. Toque em “Ver todas” para consultar a lista." android:textColor="#64748B" android:textSize="12sp" />
+            <com.google.android.material.card.MaterialCardView android:id="@+id/homeDealerEmpty" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" app:cardBackgroundColor="@color/app_surface" app:cardCornerRadius="14dp" app:cardElevation="0dp" app:strokeColor="@color/app_stroke" app:strokeWidth="1dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:padding="20dp" android:text="Nenhuma concessionária local cadastrada. Toque em “Ver todas” para consultar a lista." android:textColor="@color/app_text_secondary" android:textSize="12sp" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </ScrollView>
     <include layout="@layout/include_user_bottom_nav" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/btnHomeChat"
+        android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp" android:layout_marginBottom="16dp"
+        android:contentDescription="@string/chat_open" app:srcCompat="@drawable/ic_chat_bubble"
+        app:backgroundTint="@color/primary" app:tint="@color/chat_on_primary"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@id/bottomNav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -97,7 +97,7 @@
                 android:minWidth="48dp"
                 android:text="@string/dealer_delete_vehicle_action"
                 android:textAllCaps="false"
-                android:textColor="#B91C1C"
+                android:textColor="@color/app_error_text"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>

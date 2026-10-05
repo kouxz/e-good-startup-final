@@ -1,16 +1,15 @@
 package com.projeto.egoodapp.views.vehicle;
 
-import com.projeto.egoodapp.models.Vehicle;
+import com.projeto.egoodapp.data.model.Vehicle;
 import com.projeto.egoodapp.data.local.LocalRepository;
 import com.projeto.egoodapp.data.local.DemoCatalog;
-import com.projeto.egoodapp.views.VehiclePhotos;
+import com.projeto.egoodapp.views.vehicle.VehiclePhotos;
 import com.projeto.egoodapp.views.dealership.ConcessionariaDetailActivity;
 import com.projeto.egoodapp.views.dealership.ConcessionariasActivity;
 import android.widget.Toast;
 import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.LinearLayout;
@@ -19,26 +18,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.android.material.button.MaterialButton;
 import com.projeto.egoodapp.R;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-import com.projeto.egoodapp.views.user.HomeActivity;
+import com.projeto.egoodapp.views.home.HomeActivity;
 import com.projeto.egoodapp.views.comparison.ComparisonActivity;
-import com.projeto.egoodapp.views.vehicle.SolarActivity;
-import com.projeto.egoodapp.views.user.ProfileActivity;
-import com.projeto.egoodapp.views.user.UserChrome;
+import com.projeto.egoodapp.views.solar.SolarActivity;
+import com.projeto.egoodapp.views.profile.ProfileActivity;
+import com.projeto.egoodapp.views.common.navigation.UserChrome;
 
-public class VehicleDetailActivity extends AppCompatActivity {
+public class VehicleDetailActivity extends com.projeto.egoodapp.views.common.session.AuthenticatedActivity {
 
     private Vehicle currentVehicle;
     private UserChrome chrome;
 
     private ImageView ivVehicleImage;
-    private TextView tvVehicleName, tvPrice, tvAutonomy, tvBattery, tvConsumption, tvCategory, tvPower, tvCharging;
-    private Button badgeDetail, btnFindDealer;
-    private LinearLayout btnBackContainer;
+    private TextView tvManufacturer, tvVehicleName, tvPrice, tvAutonomy, tvBattery,
+            tvConsumption, tvCategory, tvPower, tvCharging, badgeDetail;
+    private MaterialButton btnBackContainer, btnFindDealer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
     private void initializeViews() {
         ivVehicleImage = findViewById(R.id.ivVehicleImage);
+        tvManufacturer = findViewById(R.id.tvManufacturer);
         tvVehicleName = findViewById(R.id.tvVehicleName);
         tvPrice = findViewById(R.id.tvPrice);
         tvAutonomy = findViewById(R.id.tvAutonomy);
@@ -100,16 +101,19 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
     private void displayVehicleData(Vehicle vehicle) {
         VehiclePhotos.load(vehicle, ivVehicleImage);
+        tvManufacturer.setText(vehicle.getMarca() == null ? "" : vehicle.getMarca().toUpperCase(Locale.ROOT));
         tvVehicleName.setText(vehicle.getNome());
         DecimalFormat df = new DecimalFormat("#,##0.##", new DecimalFormatSymbols(Locale.forLanguageTag("pt-BR")));
-        tvPrice.setText("R$ " + df.format(vehicle.getPreco()));
+        tvPrice.setText(vehicle.getPreco() > 0 ? "R$ " + df.format(vehicle.getPreco()) : "Em breve");
         tvAutonomy.setText(vehicle.getAutonomia() + " km"); tvBattery.setText(vehicle.getBateria() + " kWh");
         tvCategory.setText(vehicle.getCategoria());
         tvConsumption.setText(vehicle.getConsumo() == null ? "Não informado" : df.format(vehicle.getConsumo()) + " kWh/100km");
         tvPower.setText(vehicle.getPotencia() == null ? "Não informado" : vehicle.getPotencia() + " cv");
-        tvCharging.setText(vehicle.getCarga() == null ? "Não informado" : vehicle.getCarga());
-        badgeDetail.setVisibility(vehicle.getBadge() == null ? View.GONE : View.VISIBLE);
-        badgeDetail.setText(vehicle.getBadge());
+        tvCharging.setText(vehicle.getCarga() == null || vehicle.getCarga().trim().isEmpty()
+                ? "Não informado" : vehicle.getCarga());
+        boolean hasBadge = vehicle.getBadge() != null && !vehicle.getBadge().trim().isEmpty();
+        badgeDetail.setVisibility(hasBadge ? View.VISIBLE : View.GONE);
+        if (hasBadge) badgeDetail.setText(vehicle.getBadge());
         TextView info = findViewById(R.id.tvPublishedInfo);
         info.setVisibility(vehicle.getConcessionariaId() == null ? View.GONE : View.VISIBLE);
         String color = vehicle.getCor() == null || vehicle.getCor().isEmpty() ? "Não informado" : vehicle.getCor();

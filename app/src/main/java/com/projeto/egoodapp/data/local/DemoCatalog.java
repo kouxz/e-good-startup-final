@@ -1,6 +1,8 @@
 package com.projeto.egoodapp.data.local;
 
-import com.projeto.egoodapp.models.Vehicle;
+import androidx.annotation.DrawableRes;
+import com.projeto.egoodapp.R;
+import com.projeto.egoodapp.data.model.Vehicle;
 import java.util.List;
 
 public final class DemoCatalog {
@@ -14,6 +16,21 @@ public final class DemoCatalog {
             car("ex2", "Geely", "EX2", "Hatch", 123800, 14.2, 42, 320, 118, "AC 11 kW", "car_geely_ex2", "Novo"),
             car("bolt", "Chevrolet", "Bolt EV", "Hatch", 199990, 15.6, 65, 417, 200, "AC/DC", "car_bolt_ev", "Destaque"));
     }
+
+    @DrawableRes
+    public static int imageResource(String vehicleId) {
+        if (vehicleId == null) return 0;
+        return switch (vehicleId) {
+            case "demo-mini" -> R.drawable.car_byd_dolphin_mini;
+            case "demo-dolphin" -> R.drawable.car_byd_dolphin;
+            case "demo-ex30" -> R.drawable.car_volvo_ex30;
+            case "demo-eqe" -> R.drawable.car_eqe_suv;
+            case "demo-ex2" -> R.drawable.car_geely_ex2;
+            case "demo-bolt" -> R.drawable.car_bolt_ev;
+            default -> 0;
+        };
+    }
+
     private static Vehicle car(String id, String brand, String model, String category, double price,
             double consumption, int battery, int autonomy, int power, String charge, String image, String badge) {
         Vehicle v = new Vehicle(brand, model, 2024, 0, price, category, battery, autonomy, "", "", "");

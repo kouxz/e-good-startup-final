@@ -1,7 +1,10 @@
 package com.projeto.egoodapp.data.local;
 
+import com.projeto.egoodapp.data.model.AccountProfile;
+import com.projeto.egoodapp.data.model.Interest;
+
 import com.google.gson.Gson;
-import com.projeto.egoodapp.models.Vehicle;
+import com.projeto.egoodapp.data.model.Vehicle;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

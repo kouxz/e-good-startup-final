@@ -10,8 +10,8 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import com.projeto.egoodapp.R;
-import com.projeto.egoodapp.data.local.AccountProfile;
-import com.projeto.egoodapp.views.RegisterActivity;
+import com.projeto.egoodapp.data.model.AccountProfile;
+import com.projeto.egoodapp.views.auth.RegisterActivity;
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -99,6 +99,15 @@ public class DealerNavigationTest {
                 assertNotNull(activity.findViewById(R.id.progressDashboardViews));
                 assertNotNull(activity.findViewById(R.id.progressDashboardContacts));
                 assertNotNull(activity.findViewById(R.id.progressDashboardConversion));
+                assertNotNull(activity.findViewById(R.id.tvDashboardSales));
+                assertNotNull(activity.findViewById(R.id.tvContactsMonthlyCount));
+                assertNotNull(activity.findViewById(R.id.tvContactsMonthlySales));
+                assertNotNull(activity.findViewById(R.id.tvContactsMonthlyConversion));
+                View interest = activity.getLayoutInflater().inflate(
+                        R.layout.item_dealer_interest, null, false);
+                assertNotNull(interest.findViewById(R.id.btnInterestStatusAction));
+                assertNotNull(interest.findViewById(R.id.btnInterestCall));
+                assertNotNull(interest.findViewById(R.id.btnInterestEmail));
                 assertNotNull(activity.findViewById(R.id.switchDealerNotifications));
                 assertNotNull(activity.findViewById(R.id.switchDealerInterests));
                 assertNotNull(activity.findViewById(R.id.btnDealerChangePassword));

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_open">Abrir assistente e-good</string>
+    <string name="chat_back">Voltar à Home</string>
+    <string name="chat_title">Assistente e-good</string>
+    <string name="chat_subtitle">Cálculos locais e estimativas</string>
+    <string name="chat_compare">Comparar veículos</string>
+    <string name="chat_custom">Meu carro</string>
+    <string name="chat_solar">Solar</string>
+    <string name="chat_hint">Digite sua mensagem</string>
+    <string name="chat_send">Enviar mensagem</string>
+    <string name="chat_bot_name">e-good</string>
+    <color name="chat_on_primary">#0F172A</color>
+</resources>

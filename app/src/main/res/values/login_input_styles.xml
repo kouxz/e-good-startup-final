@@ -13,7 +13,7 @@
         <item name="boxCornerRadiusBottomEnd">12dp</item>
         <item name="startIconTint">@color/login_input_icon</item>
         <item name="endIconTint">@color/login_input_icon</item>
-        <item name="hintTextColor">#64748B</item>
+        <item name="hintTextColor">@color/app_text_secondary</item>
     </style>
 
     <style name="Widget.EGood.Login.Input" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
@@ -25,8 +25,8 @@
         <item name="android:paddingStart">12dp</item>
         <item name="android:paddingEnd">12dp</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">#0F172A</item>
-        <item name="android:textColorHint">#64748B</item>
+        <item name="android:textColor">@color/app_text_primary</item>
+        <item name="android:textColorHint">@color/app_text_secondary</item>
         <item name="android:textColorHighlight">#CCFBF1</item>
         <item name="android:singleLine">true</item>
     </style>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8FAFA"
+    android:background="@color/app_background"
     android:fitsSystemWindows="true">
 
     <include layout="@layout/include_user_header" />
@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/bg_simulation_gradient"
+                android:background="@drawable/bg_user_hero_rounded"
                 android:padding="16dp">
                 <TextView
                     android:layout_width="match_parent"
@@ -56,9 +56,9 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#0F766E"
+                        app:cardBackgroundColor="#2CB9B4"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#0D9488">
+                        app:strokeColor="#5FD1CC">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center" android:padding="10dp">
                             <ImageView
                                 android:layout_width="18dp"
@@ -93,9 +93,9 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#0F766E"
+                        app:cardBackgroundColor="#2CB9B4"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#0D9488">
+                        app:strokeColor="#5FD1CC">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center" android:padding="10dp">
                             <ImageView
                                 android:layout_width="18dp"
@@ -129,9 +129,9 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#0F766E"
+                        app:cardBackgroundColor="#2CB9B4"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#0D9488">
+                        app:strokeColor="#5FD1CC">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center" android:padding="10dp">
                             <ImageView
                                 android:layout_width="18dp"
@@ -165,18 +165,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#E2E8F0">
+                    app:strokeColor="@color/app_stroke">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Simulador Solar"
                             android:textSize="14sp"
-                            android:textColor="#0F172A"
+                            android:textColor="@color/app_text_primary"
                             android:textStyle="bold"/>
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -190,7 +190,7 @@
                                 android:layout_weight="1"
                                 android:text="Potência do sistema"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvSystemPowerValue"
                                 android:layout_width="wrap_content"
@@ -198,7 +198,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <com.google.android.material.slider.Slider
@@ -213,7 +213,7 @@
                             app:labelBehavior="gone"
                             app:thumbColor="#0D9488"
                             app:trackColorActive="#0D9488"
-                            app:trackColorInactive="#CBD5E1"
+                            app:trackColorInactive="@color/app_stroke"
                             app:tickVisible="false"/>
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                             <TextView
@@ -221,13 +221,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="1 kWp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="20 kWp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                         </LinearLayout>
                         <LinearLayout
@@ -242,7 +242,7 @@
                                 android:layout_weight="1"
                                 android:text="Conta de luz mensal"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvLightCostValue"
                                 android:layout_width="wrap_content"
@@ -250,7 +250,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <com.google.android.material.slider.Slider
@@ -265,7 +265,7 @@
                             app:labelBehavior="gone"
                             app:thumbColor="#0D9488"
                             app:trackColorActive="#0D9488"
-                            app:trackColorInactive="#CBD5E1"
+                            app:trackColorInactive="@color/app_stroke"
                             app:tickVisible="false"/>
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                             <TextView
@@ -273,13 +273,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="R$ 100"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="R$ 2.000"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                         </LinearLayout>
                         <LinearLayout
@@ -294,7 +294,7 @@
                                 android:layout_weight="1"
                                 android:text="Tarifa de energia (R$/kWh)"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvSolarTariffValue"
                                 android:layout_width="wrap_content"
@@ -302,7 +302,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <com.google.android.material.slider.Slider
@@ -317,7 +317,7 @@
                             app:labelBehavior="gone"
                             app:thumbColor="#0D9488"
                             app:trackColorActive="#0D9488"
-                            app:trackColorInactive="#CBD5E1"
+                            app:trackColorInactive="@color/app_stroke"
                             app:tickVisible="false"/>
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                             <TextView
@@ -325,13 +325,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="R$ 0,40"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="R$ 2,00"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                         </LinearLayout>
                         <TextView
@@ -340,7 +340,7 @@
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textSize="11sp"
-                            android:textColor="#64748B"
+                            android:textColor="@color/app_text_secondary"
                             android:layout_marginTop="12dp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -357,16 +357,16 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardBackgroundColor="@color/app_surface"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#E2E8F0">
+                        app:strokeColor="@color/app_stroke">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Geração mensal"
                                 android:textSize="11sp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:gravity="center"/>
                             <TextView
                                 android:id="@+id/tvMonthlyGeneration"
@@ -374,7 +374,7 @@
                                 android:layout_height="wrap_content"
                                 android:text=""
                                 android:textSize="14sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:gravity="center"
                                 android:textStyle="bold"
                                 android:layout_marginTop="6dp"/>
@@ -384,7 +384,7 @@
                                 android:layout_height="wrap_content"
                                 android:text=""
                                 android:textSize="10sp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:gravity="center"
                                 android:layout_marginTop="4dp"/>
                         </LinearLayout>
@@ -396,16 +396,16 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardBackgroundColor="@color/app_surface"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#E2E8F0">
+                        app:strokeColor="@color/app_stroke">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Economia mensal"
                                 android:textSize="11sp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:gravity="center"/>
                             <TextView
                                 android:id="@+id/tvMonthlySavings"
@@ -413,7 +413,7 @@
                                 android:layout_height="wrap_content"
                                 android:text=""
                                 android:textSize="14sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:gravity="center"
                                 android:textStyle="bold"
                                 android:layout_marginTop="6dp"/>
@@ -423,7 +423,7 @@
                                 android:layout_height="wrap_content"
                                 android:text=""
                                 android:textSize="10sp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:gravity="center"
                                 android:layout_marginTop="4dp"/>
                         </LinearLayout>
@@ -442,16 +442,16 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardBackgroundColor="@color/app_surface"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#E2E8F0">
+                        app:strokeColor="@color/app_stroke">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Investimento"
                                 android:textSize="11sp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:gravity="center"/>
                             <TextView
                                 android:id="@+id/tvInvestment"
@@ -459,7 +459,7 @@
                                 android:layout_height="wrap_content"
                                 android:text=""
                                 android:textSize="14sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:gravity="center"
                                 android:textStyle="bold"
                                 android:layout_marginTop="6dp"/>
@@ -472,16 +472,16 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardBackgroundColor="@color/app_surface"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#E2E8F0">
+                        app:strokeColor="@color/app_stroke">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Retorno simples"
                                 android:textSize="11sp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:gravity="center"/>
                             <TextView
                                 android:id="@+id/tvPayback"
@@ -489,7 +489,7 @@
                                 android:layout_height="wrap_content"
                                 android:text=""
                                 android:textSize="14sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:gravity="center"
                                 android:textStyle="bold"
                                 android:layout_marginTop="6dp"/>
@@ -500,32 +500,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#E2E8F0">
+                    app:strokeColor="@color/app_stroke">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Premissas da estimativa"
                             android:textSize="14sp"
-                            android:textColor="#0F172A"
+                            android:textColor="@color/app_text_primary"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Geração: 130 kWh/mês por kWp. Instalação: R$ 4.000/kWp. CO₂: fator ilustrativo de 0,075 kg/kWh. Painéis de 400 W e área aproximada de 6 m²/kWp."
                             android:textSize="12sp"
-                            android:textColor="#64748B"
+                            android:textColor="@color/app_text_secondary"
                             android:layout_marginTop="8dp"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="A geração varia conforme localização e instalação. A economia é limitada à conta mensal e não desconta cobranças fixas. O retorno é uma estimativa simples."
                             android:textSize="12sp"
-                            android:textColor="#64748B"
+                            android:textColor="@color/app_text_secondary"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

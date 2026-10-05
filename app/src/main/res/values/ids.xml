@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="vehicle_photo_bound_id" type="id" />
+    <item name="session_input_watched" type="id" />
+</resources>

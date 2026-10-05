@@ -22,13 +22,13 @@
                 android:text="Adicionar Veículo"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#0F172A" />
+                android:textColor="@color/app_text_primary" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Preencha os dados do veículo elétrico"
                 android:textSize="13sp"
-                android:textColor="#94A3B8"
+                android:textColor="@color/app_text_muted"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp" />
             <LinearLayout
@@ -62,7 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="BEV ou PHEV com autonomia mínima de 80 km"
-                        android:textColor="#64748B"
+                        android:textColor="@color/app_text_secondary"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -175,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:endIconMode="dropdown_menu"
-                    app:endIconTint="#0F172A"
+                    app:endIconTint="@color/app_text_primary"
                     app:endIconContentDescription="Escolher categoria">
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView style="@style/Widget.EGood.AddVehicle.Input"
                         android:id="@+id/spinnerCategoria"
@@ -185,7 +185,7 @@
                         android:hint="Selecione a categoria"
                         android:inputType="none"
                         android:cursorVisible="false"
-                        android:textColor="#0F172A"
+                        android:textColor="@color/app_text_primary"
                         android:popupBackground="@color/surface_white"
                         app:simpleItemLayout="@layout/item_add_vehicle_category" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -331,20 +331,20 @@
                         android:layout_height="32dp"
                         app:srcCompat="@android:drawable/ic_menu_camera"
                         android:scaleType="centerInside"
-                        app:tint="#0F172A" />
+                        app:tint="@color/app_text_primary" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Adicionar fotos"
                         android:textSize="14sp"
-                        android:textColor="#0F172A"
+                        android:textColor="@color/app_text_primary"
                         android:layout_marginTop="8dp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Toque para selecionar até 10 imagens"
                         android:textSize="12sp"
-                        android:textColor="#94A3B8"
+                        android:textColor="@color/app_text_muted"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
             </FrameLayout>

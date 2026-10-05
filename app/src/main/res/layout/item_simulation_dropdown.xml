@@ -1,2 +1,2 @@
 <?xml version="1.0" ?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:gravity="center_vertical" android:padding="12dp" android:textSize="13sp" android:textColor="#0F172A" android:background="#FFFFFF"/>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:gravity="center_vertical" android:padding="12dp" android:textSize="13sp" android:textColor="@color/app_text_primary" android:background="@color/app_surface"/>

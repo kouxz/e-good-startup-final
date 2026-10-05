@@ -1,5 +1,8 @@
 package com.projeto.egoodapp.data.local;
 
+import com.projeto.egoodapp.data.model.AccountProfile;
+import com.projeto.egoodapp.data.model.SecurityAuditEvent;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,16 +16,22 @@ import androidx.credentials.exceptions.ClearCredentialException;
 import androidx.core.content.ContextCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.projeto.egoodapp.views.user.LoginActivity;
+import com.projeto.egoodapp.views.auth.LoginActivity;
 
 public final class LocalSession {
     private static final long CREDENTIAL_CLEANUP_TIMEOUT_MS = 2000;
     private LocalSession() {}
-    public static AccountProfile current(Activity activity, String legacyType) {
+    public static AccountProfile current(Activity activity, String expectedType) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        return user == null ? null : LocalRepository.get(activity).ensureAccount(user, legacyType);
+        if (user == null || !AccountAccess.knownType(expectedType)) return null;
+        AccountProfile profile = LocalRepository.get(activity).account(user.getUid());
+        return AccountAccess.evaluate(profile, expectedType) == AccountAccess.Decision.ALLOW
+                ? profile : null;
     }
     public static void logout(Activity activity) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) SecurityAudit.record(activity, SecurityAuditEvent.Type.LOGOUT,
+                SecurityAuditEvent.Result.SUCCESS, user.getUid());
         signOut(activity, () -> {
             if (activity.isFinishing() || activity.isDestroyed()) return;
             activity.startActivity(new Intent(activity, LoginActivity.class)
@@ -31,6 +40,8 @@ public final class LocalSession {
         });
     }
     public static void signOut(Context context, Runnable completed) {
+        com.projeto.egoodapp.chat.ChatSession.clear();
+        com.projeto.egoodapp.security.SessionTimeoutController.get(context).clear();
         FirebaseAuth.getInstance().signOut();
         Context app = context.getApplicationContext();
         Handler handler = new Handler(Looper.getMainLooper());

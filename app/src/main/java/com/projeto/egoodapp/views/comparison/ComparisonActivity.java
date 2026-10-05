@@ -13,44 +13,21 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.slider.Slider;
 import com.projeto.egoodapp.R;
 import com.projeto.egoodapp.data.simulation.SimulationCalculations;
-import com.projeto.egoodapp.views.SimulationFormat;
-import com.projeto.egoodapp.views.user.HomeActivity;
-import com.projeto.egoodapp.views.user.ProfileActivity;
-import com.projeto.egoodapp.views.user.UserChrome;
-import com.projeto.egoodapp.views.vehicle.SolarActivity;
+import com.projeto.egoodapp.data.simulation.SimulationCatalog;
+import com.projeto.egoodapp.data.simulation.SimulationFormat;
+import com.projeto.egoodapp.views.home.HomeActivity;
+import com.projeto.egoodapp.views.profile.ProfileActivity;
+import com.projeto.egoodapp.views.common.navigation.UserChrome;
+import com.projeto.egoodapp.views.solar.SolarActivity;
 import com.projeto.egoodapp.views.vehicle.VehiclesActivity;
 import java.math.BigDecimal;
 
-public class ComparisonActivity extends AppCompatActivity {
+public class ComparisonActivity extends com.projeto.egoodapp.views.common.session.AuthenticatedActivity {
     private Spinner spEvCalculadora, spCombCalculadora, spEvComparacao, spCombComparacao;
     private Slider sliderEnergyCost, sliderGasCost, sliderMonthlyKm;
     private MaterialButtonToggleGroup tabs;
     private boolean calculatorMode;
     private UserChrome chrome;
-    private static final String[] ELECTRIC_VEHICLES = {
-        "BYD Dolphin Mini — 12,9 kWh/100km",
-        "BYD Dolphin — 13,4 kWh/100km",
-        "Volvo EX30 — 15,1 kWh/100km",
-        "Mercedes EQE SUV — 18,9 kWh/100km",
-        "Fiat 500e — 14,2 kWh/100km",
-        "Chevrolet Bolt EV — 15,6 kWh/100km"
-    };
-
-    private static final double[] EV_CONSUMPTION = { 12.9, 13.4, 15.1, 18.9, 14.2, 15.6 };
-    private static final int[] EV_PRICES = { 119800, 149800, 285000, 729900, 189990, 199990 };
-
-    private static final String[] COMBUSTION_VEHICLES = {
-        "Chevrolet Onix 1.0 Turbo — 12,5 L/100km",
-        "Renault Sandero 1.0 — 12,3 L/100km",
-        "VW Polo 1.0 — 11,8 L/100km",
-        "Toyota Corolla 2.0 — 10,2 L/100km",
-        "Honda HR-V 1.5 Turbo — 13,1 L/100km"
-    };
-
-    private static final double[] COMBUSTION_CONSUMPTION = { 12.5, 12.3, 11.8, 10.2, 13.1 };
-    private static final int[] COMBUSTION_PRICES = { 89990, 79990, 105990, 145990, 159990 };
-
-
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comparison);
@@ -93,9 +70,9 @@ public class ComparisonActivity extends AppCompatActivity {
     }
 
     private void setupSpinners() {
-        ArrayAdapter<String> ev = new ArrayAdapter<>(this, R.layout.item_simulation_model, ELECTRIC_VEHICLES);
+        ArrayAdapter<String> ev = new ArrayAdapter<>(this, R.layout.item_simulation_model, SimulationCatalog.labels(true));
         ev.setDropDownViewResource(R.layout.item_simulation_dropdown);
-        ArrayAdapter<String> combustion = new ArrayAdapter<>(this, R.layout.item_simulation_model, COMBUSTION_VEHICLES);
+        ArrayAdapter<String> combustion = new ArrayAdapter<>(this, R.layout.item_simulation_model, SimulationCatalog.labels(false));
         combustion.setDropDownViewResource(R.layout.item_simulation_dropdown);
         spEvCalculadora.setAdapter(ev);
         spEvComparacao.setAdapter(ev);
@@ -138,7 +115,7 @@ public class ComparisonActivity extends AppCompatActivity {
         setText(R.id.tvMonthlyKmValue, SimulationFormat.integer(distance) + " km");
         setVehicleData(ev, combustion, true);
         SimulationCalculations.Comparison result = SimulationCalculations.compare(
-                EV_CONSUMPTION[ev], COMBUSTION_CONSUMPTION[combustion], distance, energy, gas);
+                SimulationCatalog.ELECTRIC.get(ev).consumption, SimulationCatalog.COMBUSTION.get(combustion).consumption, distance, energy, gas);
         setText(R.id.tvCostEvCalc, SimulationFormat.money(result.electricCost));
         setText(R.id.tvCostCombCalc, SimulationFormat.money(result.combustionCost));
         boolean additional = result.difference.signum() < 0;
@@ -159,7 +136,7 @@ public class ComparisonActivity extends AppCompatActivity {
         if (ev < 0 || combustion < 0) return;
         setVehicleData(ev, combustion, false);
         SimulationCalculations.Comparison result = SimulationCalculations.compare(
-                EV_CONSUMPTION[ev], COMBUSTION_CONSUMPTION[combustion], 15000, .85, 5.79);
+                SimulationCatalog.ELECTRIC.get(ev).consumption, SimulationCatalog.COMBUSTION.get(combustion).consumption, 15000, .85, 5.79);
         setText(R.id.tvCostEvComparacao, SimulationFormat.money(result.electricCost));
         setText(R.id.tvCostCombComparacao, SimulationFormat.money(result.combustionCost));
         setText(R.id.tvAnnualSavings, SimulationFormat.money(result.difference.abs()));
@@ -169,13 +146,13 @@ public class ComparisonActivity extends AppCompatActivity {
 
     private void setVehicleData(int ev, int combustion, boolean calculator) {
         setText(calculator ? R.id.tvConsumEvCalc : R.id.tvConsumEvComparacao,
-                SimulationFormat.number(EV_CONSUMPTION[ev]) + " kWh/100 km");
+                SimulationFormat.number(SimulationCatalog.ELECTRIC.get(ev).consumption) + " kWh/100 km");
         setText(calculator ? R.id.tvConsumCombCalc : R.id.tvConsumCombComparacao,
-                SimulationFormat.number(COMBUSTION_CONSUMPTION[combustion]) + " L/100 km");
+                SimulationFormat.number(SimulationCatalog.COMBUSTION.get(combustion).consumption) + " L/100 km");
         setText(calculator ? R.id.tvPriceEvCalc : R.id.tvPriceEvComparacao,
-                SimulationFormat.money(BigDecimal.valueOf(EV_PRICES[ev])));
+                SimulationFormat.money(BigDecimal.valueOf(SimulationCatalog.ELECTRIC.get(ev).price)));
         setText(calculator ? R.id.tvPriceCombCalc : R.id.tvPriceCombComparacao,
-                SimulationFormat.money(BigDecimal.valueOf(COMBUSTION_PRICES[combustion])));
+                SimulationFormat.money(BigDecimal.valueOf(SimulationCatalog.COMBUSTION.get(combustion).price)));
     }
 
     private void setText(int id, String value) { ((TextView) findViewById(id)).setText(value); }

@@ -1,10 +1,10 @@
 package com.projeto.egoodapp.views.dealer;
 
 import com.projeto.egoodapp.data.local.LocalRepository;
-import com.projeto.egoodapp.data.local.AccountProfile;
+import com.projeto.egoodapp.data.model.AccountProfile;
 import com.projeto.egoodapp.data.local.LocalSession;
-import com.projeto.egoodapp.views.LocalProfileForms;
-import com.projeto.egoodapp.views.VehiclePhotos;
+import com.projeto.egoodapp.views.account.LocalProfileForms;
+import com.projeto.egoodapp.views.vehicle.VehiclePhotos;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,13 +19,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import com.projeto.egoodapp.R;
-import com.projeto.egoodapp.models.Vehicle;
+import com.projeto.egoodapp.data.model.Vehicle;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class DealerDashboardActivity extends AppCompatActivity {
+public class DealerDashboardActivity extends com.projeto.egoodapp.views.common.session.AuthenticatedActivity {
 
     private DealerNavigation navigation;
     private FrameLayout containerDashboard, containerVehicles, containerProfile, containerSettings, containerContacts;
@@ -46,6 +46,7 @@ public class DealerDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dealer_dashboard);
         LocalRepository.get(this).migrateLegacy(owner.uid);
         sections = new DealerSections(this, owner.uid, this::showContacts);
+        sections.restore(savedInstanceState);
         migrationWorker.execute(() -> {
             LocalRepository.get(this).preserveLegacyPhotos(owner.uid);
             runOnUiThread(() -> { if (!isFinishing() && !isDestroyed() && "vehicles".equals(activeSection)) loadVehicles(); });
@@ -148,7 +149,7 @@ public class DealerDashboardActivity extends AppCompatActivity {
         MaterialButton deleteButton = card.findViewById(R.id.btnDeleteVehicle);
         String vehicleName = veiculo.getMarca() + " " + veiculo.getModelo();
         deleteButton.setContentDescription(getString(R.string.dealer_delete_vehicle_description, vehicleName));
-        deleteButton.setOnClickListener(v -> new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_EGood_LocalDialog)
+        deleteButton.setOnClickListener(v -> new com.projeto.egoodapp.views.common.session.SessionDialogBuilder(this, R.style.ThemeOverlay_EGood_LocalDialog)
                 .setTitle(R.string.dealer_delete_vehicle_title)
                 .setMessage(getString(R.string.dealer_delete_vehicle_message, vehicleName))
                 .setNegativeButton(R.string.dealer_delete_vehicle_cancel, null)
@@ -219,7 +220,12 @@ public class DealerDashboardActivity extends AppCompatActivity {
         else showDashboard();
     }
     @Override protected void onNewIntent(Intent intent) { super.onNewIntent(intent); setIntent(intent); openSection(intent.getStringExtra("section")); }
-    @Override protected void onSaveInstanceState(Bundle state) { state.putString("section", activeSection); if (navigation != null) navigation.save(state); super.onSaveInstanceState(state); }
+    @Override protected void onSaveInstanceState(Bundle state) {
+        state.putString("section", activeSection);
+        if (navigation != null) navigation.save(state);
+        if (sections != null) sections.save(state);
+        super.onSaveInstanceState(state);
+    }
     @Override protected void onDestroy() { migrationWorker.shutdown(); super.onDestroy(); }
 
 }

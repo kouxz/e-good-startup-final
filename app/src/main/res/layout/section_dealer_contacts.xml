@@ -18,21 +18,123 @@
             android:layout_height="wrap_content"
             android:text="Interessados"
             android:textSize="20sp"
-            android:textColor="#0F172A"
+            android:textColor="@color/app_text_primary"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="13sp"
-            android:textColor="#94A3B8"
+            android:textColor="@color/app_text_muted"
             android:id="@+id/tvInterestCount"
             android:layout_marginTop="4dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Desempenho deste mês"
+            android:textColor="@color/app_text_primary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/app_surface"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/app_stroke"
+            app:strokeWidth="1dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvContactsMonthlyCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/app_teal_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="Recebidos"
+                        android:textColor="@color/app_text_muted"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="38dp"
+                    android:background="@color/app_stroke" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvContactsMonthlySales"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/contact_sale_text"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="Vendas"
+                        android:textColor="@color/app_text_muted"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="38dp"
+                    android:background="@color/app_stroke" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvContactsMonthlyConversion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textColor="@color/app_teal_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="Conversão"
+                        android:textColor="@color/app_text_muted"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp">
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -47,8 +149,8 @@
                     android:text="Todos"
                     android:textSize="11sp"
                     android:textAllCaps="false"
-                    android:textColor="#64748B"
-                    app:backgroundTint="#F1F3F5"
+                    android:textColor="@color/app_text_secondary"
+                    app:backgroundTint="@color/app_surface_variant"
                     app:cornerRadius="12dp"
                     android:layout_marginEnd="6dp"
                     android:minWidth="0dp"
@@ -62,8 +164,8 @@
                     android:text="Novo"
                     android:textSize="11sp"
                     android:textAllCaps="false"
-                    android:textColor="#64748B"
-                    app:backgroundTint="#F1F3F5"
+                    android:textColor="@color/app_text_secondary"
+                    app:backgroundTint="@color/app_surface_variant"
                     app:cornerRadius="12dp"
                     android:layout_marginEnd="6dp"
                     android:minWidth="0dp"
@@ -77,8 +179,8 @@
                     android:text="Em contato"
                     android:textSize="11sp"
                     android:textAllCaps="false"
-                    android:textColor="#64748B"
-                    app:backgroundTint="#F1F3F5"
+                    android:textColor="@color/app_text_secondary"
+                    app:backgroundTint="@color/app_surface_variant"
                     app:cornerRadius="12dp"
                     android:layout_marginEnd="6dp"
                     android:minWidth="0dp"
@@ -92,8 +194,8 @@
                     android:text="Finalizado"
                     android:textSize="11sp"
                     android:textAllCaps="false"
-                    android:textColor="#64748B"
-                    app:backgroundTint="#F1F3F5"
+                    android:textColor="@color/app_text_secondary"
+                    app:backgroundTint="@color/app_surface_variant"
                     app:cornerRadius="12dp"
                     android:layout_marginEnd="6dp"
                     android:minWidth="0dp"

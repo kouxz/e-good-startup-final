@@ -1,10 +1,20 @@
 package com.projeto.egoodapp.data.local;
 
-import com.projeto.egoodapp.models.Vehicle;
+import com.projeto.egoodapp.data.model.AccountProfile;
+import com.projeto.egoodapp.data.model.DealerPerformance;
+import com.projeto.egoodapp.data.model.DealerRating;
+import com.projeto.egoodapp.data.model.DealerRatingSummary;
+import com.projeto.egoodapp.data.model.Interest;
+import com.projeto.egoodapp.data.model.SecurityAuditEvent;
+import com.projeto.egoodapp.data.model.VehicleView;
+
+import com.projeto.egoodapp.data.model.Vehicle;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 /** Domain rules are independent of Activities and Android storage. */
@@ -13,6 +23,12 @@ public class LocalState {
     public List<Vehicle> vehicles = new ArrayList<>();
     public List<Interest> interests = new ArrayList<>();
     public List<VehicleView> vehicleViews = new ArrayList<>();
+    public List<DealerRating> dealerRatings = new ArrayList<>();
+    public List<SecurityAuditEvent> securityAudit = new ArrayList<>();
+    public com.projeto.egoodapp.security.LoginAttemptPolicy loginAttempts = new com.projeto.egoodapp.security.LoginAttemptPolicy();
+    public com.projeto.egoodapp.security.SessionDeadline sessionDeadline;
+    public static final int AUDIT_LIMIT = 200;
+    public static final long AUDIT_RETENTION_MS = 90L * 24 * 60 * 60 * 1000;
     public boolean legacyImported;
     public boolean legacyAssigned;
 
@@ -60,6 +76,48 @@ public class LocalState {
         if (owner == null || !owner.isDealer()) return false;
         return vehicles.removeIf(v -> Objects.equals(v.getId(), id) && actor.equals(v.getConcessionariaId()));
     }
+
+    /** Removes every local record that belongs to or identifies the account. */
+    public List<String> deleteAccount(String uid) {
+        List<String> ownedPhotos = new ArrayList<>();
+        if (uid == null || uid.trim().isEmpty()) return ownedPhotos;
+
+        Set<String> ownedVehicleIds = new HashSet<>();
+        if (vehicles != null) {
+            for (Vehicle vehicle : vehicles) {
+                if (!Objects.equals(uid, vehicle.getConcessionariaId())) continue;
+                if (vehicle.getId() != null) ownedVehicleIds.add(vehicle.getId());
+                if (vehicle.getImagemUrl() != null && !vehicle.getImagemUrl().trim().isEmpty()) {
+                    ownedPhotos.add(vehicle.getImagemUrl());
+                }
+            }
+            vehicles.removeIf(vehicle -> Objects.equals(uid, vehicle.getConcessionariaId()));
+        }
+        if (accounts != null) accounts.removeIf(profile -> Objects.equals(uid, profile.uid));
+        if (interests != null) interests.removeIf(interest -> Objects.equals(uid, interest.userId)
+                || Objects.equals(uid, interest.dealerId)
+                || ownedVehicleIds.contains(interest.vehicleId));
+        if (vehicleViews != null) vehicleViews.removeIf(view -> Objects.equals(uid, view.userId)
+                || Objects.equals(uid, view.dealerId)
+                || ownedVehicleIds.contains(view.vehicleId));
+        if (dealerRatings != null) dealerRatings.removeIf(rating -> Objects.equals(uid, rating.userId)
+                || Objects.equals("local:" + uid, rating.dealerKey));
+        if (securityAudit != null) securityAudit.removeIf(event -> Objects.equals(uid, event.userId));
+        if (sessionDeadline != null && Objects.equals(uid, sessionDeadline.userId)) sessionDeadline = null;
+        return ownedPhotos;
+    }
+    public void pruneAudit(long now) {
+        if (securityAudit == null) securityAudit = new ArrayList<>();
+        securityAudit.removeIf(e -> e == null || e.type == null || e.result == null
+                || e.createdAt <= now - AUDIT_RETENTION_MS || e.createdAt > now);
+        while (securityAudit.size() > AUDIT_LIMIT) securityAudit.remove(0);
+    }
+    public void audit(SecurityAuditEvent.Type type, SecurityAuditEvent.Result result, String uid, long now) {
+        if (type == null || result == null) throw new IllegalArgumentException("Evento inválido");
+        pruneAudit(now);
+        securityAudit.add(new SecurityAuditEvent(type, result, uid, now));
+        pruneAudit(now);
+    }
     public boolean addInterest(String userId, String dealerId, Vehicle vehicle) {
         AccountProfile user = account(userId), dealer = account(dealerId);
         if (user == null || user.isDealer() || !user.hasContact() || dealer == null
@@ -85,11 +143,25 @@ public class LocalState {
         result.sort(Comparator.comparingLong((Interest i) -> i.createdAt).reversed());
         return result;
     }
-    public boolean updateStatus(String actor, String id, String status) {
-        if (!java.util.Arrays.asList("Novo", "Em contato", "Finalizado").contains(status)) return false;
+    public boolean migrateLegacyInterests() {
+        boolean changed = false;
+        if (interests == null) {
+            interests = new ArrayList<>();
+            return true;
+        }
+        for (Interest interest : interests) {
+            if (InterestWorkflow.migrateLegacy(interest)) changed = true;
+        }
+        return changed;
+    }
+    public boolean updateInterest(String actor, String id, String status, String outcome) {
         AccountProfile owner = account(actor);
         if (owner == null || !owner.isDealer()) return false;
-        for (Interest i : interests) if (actor.equals(i.dealerId) && id.equals(i.id)) { i.status = status; return true; }
+        for (Interest interest : interests) {
+            if (actor.equals(interest.dealerId) && Objects.equals(id, interest.id)) {
+                return InterestWorkflow.update(interest, status, outcome);
+            }
+        }
         return false;
     }
     public boolean recordView(String userId, String vehicleId, long createdAt) {
@@ -103,17 +175,64 @@ public class LocalState {
         view.dealerId = vehicle.getConcessionariaId(); view.createdAt = createdAt;
         vehicleViews.add(view); return true;
     }
-    public DealerPerformance performance(String dealerId, long monthStart) {
-        int views = 0, contacts = 0, completed = 0;
+    public DealerPerformance performance(String dealerId, long periodStart, long periodEnd) {
+        int views = 0, contacts = 0, sales = 0;
         if (vehicleViews != null) for (VehicleView view : vehicleViews) {
-            if (Objects.equals(dealerId, view.dealerId) && view.createdAt >= monthStart) views++;
+            if (Objects.equals(dealerId, view.dealerId)
+                    && view.createdAt >= periodStart && view.createdAt < periodEnd) views++;
         }
         for (Interest interest : interests) {
-            if (!Objects.equals(dealerId, interest.dealerId) || interest.createdAt < monthStart) continue;
+            if (!Objects.equals(dealerId, interest.dealerId)
+                    || interest.createdAt < periodStart || interest.createdAt >= periodEnd) continue;
             contacts++;
-            if ("Finalizado".equals(interest.status)) completed++;
+            if (InterestWorkflow.isSale(interest)) sales++;
         }
-        int conversion = contacts == 0 ? 0 : (int) Math.round(completed * 100.0 / contacts);
-        return new DealerPerformance(views, contacts, conversion);
+        int conversion = contacts == 0 ? 0 : (int) Math.round(sales * 100.0 / contacts);
+        return new DealerPerformance(views, contacts, sales, conversion);
+    }
+
+    public void rateDealer(String userId, String dealerKey, int score, long updatedAt) {
+        AccountProfile user = account(userId);
+        if (user == null || user.isDealer()) {
+            throw new IllegalArgumentException("Apenas usuários Pessoa podem avaliar concessionárias");
+        }
+        if (dealerKey == null || dealerKey.trim().isEmpty() || score < 1 || score > 5) {
+            throw new IllegalArgumentException("Avaliação inválida");
+        }
+        if (dealerRatings == null) dealerRatings = new ArrayList<>();
+        for (DealerRating rating : dealerRatings) {
+            if (Objects.equals(userId, rating.userId) && Objects.equals(dealerKey, rating.dealerKey)) {
+                rating.score = score;
+                rating.updatedAt = updatedAt;
+                return;
+            }
+        }
+        DealerRating rating = new DealerRating();
+        rating.userId = userId;
+        rating.dealerKey = dealerKey;
+        rating.score = score;
+        rating.updatedAt = updatedAt;
+        dealerRatings.add(rating);
+    }
+
+    public boolean removeDealerRating(String userId, String dealerKey) {
+        if (dealerRatings == null) return false;
+        return dealerRatings.removeIf(rating -> Objects.equals(userId, rating.userId)
+                && Objects.equals(dealerKey, rating.dealerKey));
+    }
+
+    public DealerRatingSummary dealerRating(String dealerKey, String userId) {
+        int count = 0;
+        int total = 0;
+        Integer userScore = null;
+        if (dealerRatings != null) {
+            for (DealerRating rating : dealerRatings) {
+                if (!Objects.equals(dealerKey, rating.dealerKey)) continue;
+                total += rating.score;
+                count++;
+                if (Objects.equals(userId, rating.userId)) userScore = rating.score;
+            }
+        }
+        return new DealerRatingSummary(count == 0 ? 0 : total / (double) count, count, userScore);
     }
 }

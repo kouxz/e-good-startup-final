@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8FAFA"
+    android:background="@color/app_background"
     android:fitsSystemWindows="true">
 
     <include layout="@layout/include_user_header" />
@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:text="Comparação Detalhada"
                     android:textSize="20sp"
-                    android:textColor="#0F172A"
+                    android:textColor="@color/app_text_primary"
                     android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/tvSubtitleComparison"
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:text="Escolha dois veículos para comparar"
                     android:textSize="12sp"
-                    android:textColor="#64748B"
+                    android:textColor="@color/app_text_secondary"
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
             <com.google.android.material.button.MaterialButtonToggleGroup
@@ -64,32 +64,46 @@
                     android:layout_height="wrap_content"
                     android:text="Baseado em 15.000 km/ano"
                     android:textSize="12sp"
-                    android:textColor="#64748B"
+                    android:textColor="@color/app_text_secondary"
                     android:gravity="center"
                     android:layout_marginBottom="14dp"/>
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
                     app:strokeColor="#99DEDA">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="⚡  Veículo Elétrico"
-                            android:textSize="14sp"
-                            android:textColor="#0F172A"
-                            android:textStyle="bold"/>
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/ivComparisonElectricIcon"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/ic_vehicle_autonomy"
+                                app:tint="#F59E0B" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="Veículo Elétrico"
+                                android:textColor="@color/app_text_primary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Selecione o modelo"
                             android:textSize="11sp"
-                            android:textColor="#64748B"
+                            android:textColor="@color/app_text_secondary"
                             android:layout_marginTop="12dp"
                             android:layout_marginBottom="4dp"/>
                         <Spinner
@@ -98,7 +112,7 @@
                             android:layout_height="48dp"
                             android:spinnerMode="dropdown"
                             android:background="@drawable/bg_simulation_input"
-                            android:popupBackground="#FFFFFF"
+                            android:popupBackground="@color/app_surface"
                             android:paddingStart="8dp"
                             android:paddingEnd="8dp"/>
                         <LinearLayout
@@ -113,7 +127,7 @@
                                 android:layout_weight="1"
                                 android:text="Consumo"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvConsumEvComparacao"
                                 android:layout_width="wrap_content"
@@ -121,7 +135,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <LinearLayout
@@ -136,7 +150,7 @@
                                 android:layout_weight="1"
                                 android:text="Custo anual de energia"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvCostEvComparacao"
                                 android:layout_width="wrap_content"
@@ -144,7 +158,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <LinearLayout
@@ -159,7 +173,7 @@
                                 android:layout_weight="1"
                                 android:text="Preço do veículo"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvPriceEvComparacao"
                                 android:layout_width="wrap_content"
@@ -167,7 +181,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -177,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:text="VS"
                     android:textSize="11sp"
-                    android:textColor="#64748B"
+                    android:textColor="@color/app_text_secondary"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp"/>
@@ -185,25 +199,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
                     app:strokeColor="#FED7AA">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="♧  Veículo a Combustão"
-                            android:textSize="14sp"
-                            android:textColor="#0F172A"
-                            android:textStyle="bold"/>
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/ivComparisonCombustionIcon"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/ic_vehicle_category"
+                                app:tint="#F97316" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="Veículo a Combustão"
+                                android:textColor="@color/app_text_primary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Selecione o modelo"
                             android:textSize="11sp"
-                            android:textColor="#64748B"
+                            android:textColor="@color/app_text_secondary"
                             android:layout_marginTop="12dp"
                             android:layout_marginBottom="4dp"/>
                         <Spinner
@@ -212,7 +240,7 @@
                             android:layout_height="48dp"
                             android:spinnerMode="dropdown"
                             android:background="@drawable/bg_simulation_input"
-                            android:popupBackground="#FFFFFF"
+                            android:popupBackground="@color/app_surface"
                             android:paddingStart="8dp"
                             android:paddingEnd="8dp"/>
                         <LinearLayout
@@ -227,7 +255,7 @@
                                 android:layout_weight="1"
                                 android:text="Consumo"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvConsumCombComparacao"
                                 android:layout_width="wrap_content"
@@ -235,7 +263,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <LinearLayout
@@ -250,7 +278,7 @@
                                 android:layout_weight="1"
                                 android:text="Custo anual de combustível"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvCostCombComparacao"
                                 android:layout_width="wrap_content"
@@ -273,7 +301,7 @@
                                 android:layout_weight="1"
                                 android:text="Preço do veículo"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvPriceCombComparacao"
                                 android:layout_width="wrap_content"
@@ -281,7 +309,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -331,7 +359,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
@@ -342,14 +370,14 @@
                             android:layout_height="wrap_content"
                             android:text="💡 Dica"
                             android:textSize="14sp"
-                            android:textColor="#0F172A"
+                            android:textColor="@color/app_text_primary"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Use a Calculadora para ajustar os preços de energia e gasolina e simular seus gastos mensais."
                             android:textSize="12sp"
-                            android:textColor="#64748B"
+                            android:textColor="@color/app_text_secondary"
                             android:layout_marginTop="6dp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -365,25 +393,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
                     app:strokeColor="#99DEDA">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="⚡  Veículo Elétrico"
-                            android:textSize="14sp"
-                            android:textColor="#0F172A"
-                            android:textStyle="bold"/>
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/ivCalculatorElectricIcon"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/ic_vehicle_autonomy"
+                                app:tint="#F59E0B" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="Veículo Elétrico"
+                                android:textColor="@color/app_text_primary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Selecione o modelo"
                             android:textSize="11sp"
-                            android:textColor="#64748B"
+                            android:textColor="@color/app_text_secondary"
                             android:layout_marginTop="12dp"
                             android:layout_marginBottom="4dp"/>
                         <Spinner
@@ -392,7 +434,7 @@
                             android:layout_height="48dp"
                             android:spinnerMode="dropdown"
                             android:background="@drawable/bg_simulation_input"
-                            android:popupBackground="#FFFFFF"
+                            android:popupBackground="@color/app_surface"
                             android:paddingStart="8dp"
                             android:paddingEnd="8dp"/>
                         <LinearLayout
@@ -407,7 +449,7 @@
                                 android:layout_weight="1"
                                 android:text="Consumo"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvConsumEvCalc"
                                 android:layout_width="wrap_content"
@@ -415,7 +457,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <LinearLayout
@@ -430,7 +472,7 @@
                                 android:layout_weight="1"
                                 android:text="Preço do veículo"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvPriceEvCalc"
                                 android:layout_width="wrap_content"
@@ -438,7 +480,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <LinearLayout
@@ -453,7 +495,7 @@
                                 android:layout_weight="1"
                                 android:text="Tarifa de energia (R$/kWh)"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvEnergyCostValue"
                                 android:layout_width="wrap_content"
@@ -461,7 +503,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <com.google.android.material.slider.Slider
@@ -476,7 +518,7 @@
                             app:labelBehavior="gone"
                             app:thumbColor="#0D9488"
                             app:trackColorActive="#0D9488"
-                            app:trackColorInactive="#CBD5E1"
+                            app:trackColorInactive="@color/app_stroke"
                             app:tickVisible="false"/>
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                             <TextView
@@ -484,13 +526,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="R$ 0,40"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="R$ 2,00"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -499,25 +541,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
                     app:strokeColor="#FED7AA">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="♧  Veículo a Combustão"
-                            android:textSize="14sp"
-                            android:textColor="#0F172A"
-                            android:textStyle="bold"/>
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/ivCalculatorCombustionIcon"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/ic_vehicle_category"
+                                app:tint="#F97316" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="Veículo a Combustão"
+                                android:textColor="@color/app_text_primary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Selecione o modelo"
                             android:textSize="11sp"
-                            android:textColor="#64748B"
+                            android:textColor="@color/app_text_secondary"
                             android:layout_marginTop="12dp"
                             android:layout_marginBottom="4dp"/>
                         <Spinner
@@ -526,7 +582,7 @@
                             android:layout_height="48dp"
                             android:spinnerMode="dropdown"
                             android:background="@drawable/bg_simulation_input"
-                            android:popupBackground="#FFFFFF"
+                            android:popupBackground="@color/app_surface"
                             android:paddingStart="8dp"
                             android:paddingEnd="8dp"/>
                         <LinearLayout
@@ -541,7 +597,7 @@
                                 android:layout_weight="1"
                                 android:text="Consumo"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvConsumCombCalc"
                                 android:layout_width="wrap_content"
@@ -549,7 +605,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <LinearLayout
@@ -564,7 +620,7 @@
                                 android:layout_weight="1"
                                 android:text="Preço do veículo"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvPriceCombCalc"
                                 android:layout_width="wrap_content"
@@ -572,7 +628,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F172A"
+                                android:textColor="@color/app_text_primary"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <LinearLayout
@@ -587,7 +643,7 @@
                                 android:layout_weight="1"
                                 android:text="Gasolina (R$/L)"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvGasCostValue"
                                 android:layout_width="wrap_content"
@@ -610,7 +666,7 @@
                             app:labelBehavior="gone"
                             app:thumbColor="#EA580C"
                             app:trackColorActive="#EA580C"
-                            app:trackColorInactive="#CBD5E1"
+                            app:trackColorInactive="@color/app_stroke"
                             app:tickVisible="false"/>
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                             <TextView
@@ -618,13 +674,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="R$ 4,00"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="R$ 9,00"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -633,11 +689,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#E2E8F0">
+                    app:strokeColor="@color/app_stroke">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -651,7 +707,7 @@
                                 android:layout_weight="1"
                                 android:text="Quilômetros por mês"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvMonthlyKmValue"
                                 android:layout_width="wrap_content"
@@ -659,7 +715,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                         <com.google.android.material.slider.Slider
@@ -674,7 +730,7 @@
                             app:labelBehavior="gone"
                             app:thumbColor="#0D9488"
                             app:trackColorActive="#0D9488"
-                            app:trackColorInactive="#CBD5E1"
+                            app:trackColorInactive="@color/app_stroke"
                             app:tickVisible="false"/>
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
                             <TextView
@@ -682,13 +738,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="500 km"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="5.000 km"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:textSize="10sp"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -706,16 +762,16 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardBackgroundColor="@color/app_surface"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#E2E8F0">
+                        app:strokeColor="@color/app_stroke">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Custo mensal elétrico"
                                 android:textSize="11sp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:gravity="center"/>
                             <TextView
                                 android:id="@+id/tvCostEvCalc"
@@ -723,7 +779,7 @@
                                 android:layout_height="wrap_content"
                                 android:text=""
                                 android:textSize="14sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:gravity="center"
                                 android:textStyle="bold"
                                 android:layout_marginTop="6dp"/>
@@ -776,16 +832,16 @@
                         android:layout_margin="3dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="1dp"
-                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardBackgroundColor="@color/app_surface"
                         app:strokeWidth="1dp"
-                        app:strokeColor="#E2E8F0">
+                        app:strokeColor="@color/app_stroke">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Custo mensal combustível"
                                 android:textSize="11sp"
-                                android:textColor="#64748B"
+                                android:textColor="@color/app_text_secondary"
                                 android:gravity="center"/>
                             <TextView
                                 android:id="@+id/tvCostCombCalc"
@@ -804,11 +860,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="@color/app_surface"
                     app:cardCornerRadius="14dp"
                     app:cardElevation="1dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#E2E8F0">
+                    app:strokeColor="@color/app_stroke">
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -823,7 +879,7 @@
                                 android:id="@+id/tvAnnualSavingsCalcLabel"
                                 android:text="Economia anual estimada"
                                 android:textSize="12sp"
-                                android:textColor="#64748B"/>
+                                android:textColor="@color/app_text_secondary"/>
                             <TextView
                                 android:id="@+id/tvAnnualSavingsCalc"
                                 android:layout_width="wrap_content"
@@ -831,7 +887,7 @@
                                 android:maxWidth="180dp"
                                 android:gravity="end"
                                 android:textSize="12sp"
-                                android:textColor="#0F766E"
+                                android:textColor="@color/app_teal_content"
                                 android:textStyle="bold"/>
                         </LinearLayout>
                     </LinearLayout>
